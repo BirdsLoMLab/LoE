@@ -1,59 +1,46 @@
 # Legend of Elements — Reverse Engineering Project
 
 ## Overview
-Systematic extraction and documentation of game data from Legend of Elements (LoE), an idle RPG by Joy Nice Games (same studio as Legend of Mushroom).
+Systematic reverse engineering of game data from Legend of Elements (LoE), an idle RPG by Joy Nice Games.
 
-**Status**: Data collection phase — awaiting H5 web version extraction.
+**Status**: Active extraction — H5 web client bundle analyzed.
 
-## Data Targets (Priority Order)
-1. **Damage Formula & Stat System** — DILI, GDB, GDR, crit/focus/break, speed/GCD
-2. **Item & Equipment Database** — equipment, relics, vessels, mounts, fate souls
-3. **Gacha / Draw System** — pull rates, pity mechanics, banner data
-4. **Spirit & Pet Data** — spirit roster, inheritance rates, pet unlock schedule
-5. **Skill System** — all 3 classes, scaling values, hidden interactions
-6. **Progression & Economy** — XP curves, tier requirements, idle rewards
+## Data Sources (Code-Verified Only)
+All findings below are extracted from the actual game client code. No community guides, wikis, or player speculation.
+
+### Primary Source
+- **Bundle:** `bundle-ac7a6.js` — 17MB minified (23MB beautified, 426K lines)
+- **Framework:** Laya Engine + FairyGUI
+- **Architecture:** ECS (Entity Component System), WebSocket + protobuf serialization
+- **CDN:** `sydh-cdnres.joyagegames.com/EN/stable/mix_wx_pangu/common/`
+
+### Extracted Data
+1. **Complete stat enum** — `_NumericType` class with 150+ stat IDs (L127017)
+2. **Complete damage formula** — `calcDamageNew()` / `onColliderIn()` (L413500)
+3. **Protobuf definitions** — 40K lines of client-server protocol
+4. **Config table references** — structure definitions for all game data tables
+5. **API endpoints & URLs** — CDN, payment, analytics, dev server addresses
 
 ## Project Structure
 ```
-loe_reverse_engineering/     # Processed findings
-  network/                   # API endpoints & payloads
-  game_data/                 # Structured game data (JSON)
-  h5_analysis/               # JS analysis results
-  apk_analysis/              # APK static analysis (future)
-raw_extractions/             # Raw captured data (user-provided)
-  h5_sources/                # JS/config files from H5 web version
+loe_reverse_engineering/     # Processed findings (code-verified only)
+  network/                   # API endpoints & protocol
+  game_data/                 # Extracted game mechanics data
+raw_extractions/             # Raw captured data
+  js_fragments/              # 202 code fragments from bundle (200 lines each)
+  embedded_data/             # Protobuf defs, config tables, data structures
+  configs/                   # Engine config, manifest
+  h5_sources/                # Original H5 web client files
   har_captures/              # HAR network captures
   console_dumps/             # DevTools console output
 scripts/                     # Analysis pipeline
 ```
 
-## Quick Start
-```bash
-# 1. Place extracted files in raw_extractions/ subdirectories
-# 2. Filter out image/video/font bloat:
-python3 scripts/filter_extraction.py raw_extractions/h5_sources/
-
-# 3. Parse HAR network captures:
-python3 scripts/parse_har.py raw_extractions/har_captures/gameplay.har
-
-# 4. Analyze JS source files:
-python3 scripts/analyze_js.py raw_extractions/h5_sources/ --beautify
-
-# 5. Extract and categorize game data configs:
-python3 scripts/extract_game_data.py raw_extractions/ --formulas
-
-# 6. Search everything for game keywords:
-python3 scripts/search_keywords.py raw_extractions/
-```
-
-## Community Formulas (Unverified — Need Server Confirmation)
-```
-Final = Base_Damage × (1 + CritDmg) × (1 + FocusDmg) × (1 + BreakDmg) × GDB_Multiplier
-GDR Multiplier = max(0.3, 1 + Attacker_GDB - Defender_GDR)
-Cast_Time = Base_Cast_Time / (1 + Speed%)
-```
-
-## Confidence Levels
-- **CONFIRMED** — verified from server/game data
-- **LIKELY** — strong evidence from multiple sources
-- **UNVERIFIED** — community claim only
+## Key Findings
+- Combat runs client-side in `calcDamageNew()` — full damage formula extracted
+- 150+ stats with 5-tier scaling: Base → Add → Pct → FinalAdd → FinalPct
+- "Focus" = Crit2 (second crit system), "Break" = POLING (破灵)
+- DILI = low-HP damage reduction (not penetration), GDB/GDR 0.3 floor confirmed
+- Physical/Magic split for ATK, DEF, Hit, Block, Precision
+- 10 action types with source-specific damage bonuses
+- Config tables loaded from CDN at runtime (not embedded in client)
