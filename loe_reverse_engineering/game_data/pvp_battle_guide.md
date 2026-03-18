@@ -119,53 +119,60 @@ GDB/GDR Multiplier = max(0.3, 1 + Your_GDB - Enemy_GDR)
 
 ## 3. Core Stats Explained
 
-Here's every major stat and what it actually does for your character.
+Here's every major stat and what it actually does for your character. See `stat_formulas.md` for the complete 150+ stat enum extracted from game code.
+
+> **Code-verified discovery**: The game has **separate Physical and Magic stats** (PAtk/MAtk, PDef/MDef, etc.), though community guides simplify to just "ATK" and "DEF". The UI may combine them for display.
 
 ### Offensive Stats
 
-| Stat | What It Does | Plain Language |
-|------|-------------|----------------|
-| **ATK (Attack)** | Base damage for all your attacks and skills | The foundation of your damage. Higher ATK = harder hits. |
-| **Crit Rate** | Chance (%) to land a critical hit | How often you roll a "lucky hit." |
-| **Crit Damage** | Bonus damage (%) when you crit | How much bigger your lucky hits are. |
-| **Focus Rate** | Chance (%) to land a focused hit | A second "lucky hit" roll, separate from crit. |
-| **Focus Damage** | Bonus damage (%) from focused hits | How much bigger your focused hits are. |
-| **Break Rate** | Chance (%) to break enemy defense | A third "lucky hit" roll that ignores some defense. |
-| **Break Damage** | Bonus damage (%) when you break | How much extra damage you deal on a break. |
-| **GDB (Global Damage Bonus)** | Flat % added to all damage dealt | An always-on damage multiplier for everything. |
-| **Damage Bonus** | Extra damage % (may be skill-specific) | Additional damage that may apply to certain types of attacks. |
-| **Penetration** | Ignores a portion of enemy DEF | Helps you punch through tanky opponents. |
+| Stat | What It Does | Code Name(s) | Plain Language |
+|------|-------------|--------------|----------------|
+| **ATK (Attack)** | Base damage for attacks/skills | `PAtk` (1003), `MAtk` (1004) | **Split into Physical and Magic ATK in code.** Higher ATK = harder hits. |
+| **Crit Rate** | Chance (%) to crit | `Crit` (1008) + per-type: `AttackCrit` (1044), `CoreSkillCrit` (1048), `ActiveSkillCrit` (1052) | **There are separate crit rates per action type!** General Crit plus bonuses for normal attacks, core skills, and actives. |
+| **Crit Damage** | Bonus damage on crit | `CritDam` (1010) | How much bigger your crits are. Contested by enemy `CritDamDef` (1011). |
+| **Focus Rate** | Chance (%) for "focused" hit | `Crit2` (1112) | **Focus is literally "Crit2" in the code** — a second, independent crit roll. |
+| **Focus Damage** | Bonus damage on focus | `Crit2_DAM` (1114) | Contested by enemy `Crit2_DAM_DEF` (1115). |
+| **Break Rate** | Chance (%) to break defense | `CHARSTATE_POLING` (1150) | **"POLING" (破灵) in code.** A third independent crit-like roll. |
+| **Break Damage** | Bonus damage on break | `CHARSTATE_POLING_DAM` (1152) | Contested by enemy `POLING_DAM_DEF` (1153). |
+| **GDB (Global Damage Bonus)** | Flat % added to all damage | `AllDamAdd` (1038) | An always-on damage multiplier for everything. |
+| **DILI (Penetration)** | Ignores portion of enemy DEF | `DILI` (1116) | **Confirmed as penetration, NOT "Damage-In/Out ratio."** Countered by `DILI_DEF` (1146). |
+| **Double Hit** | Chance for double attack | `DoubleHit` (1026) | **HIDDEN STAT** — chance to attack twice. Countered by `DoubleHitDef` (1043). |
 
 ### Defensive Stats
 
 | Stat | What It Does | Plain Language |
 |------|-------------|----------------|
-| **HP (Health Points)** | Total health pool | How much damage you can take before dying. |
-| **DEF (Defense)** | Reduces incoming base damage | Your armor — reduces the raw damage number before multipliers. |
-| **GDR (Global Damage Reduction)** | Flat % reduction on all incoming damage | An always-on damage shield. The best defensive stat. Code name: `dmgReduce` (ID 17). |
-| **MIT (Damage Mitigation)** | Reduces all incoming damage by a % for a duration | A timed defensive buff (e.g., Rivergleam spirit gives +4% MIT for 10s). |
-| **Evasion/Dodge** | Chance (%) to completely avoid an attack | Sometimes you dodge entirely and take zero damage. Code name: `dodgeRate` (ID 12). |
-| **Block Rate** | Chance (%) to block and reduce damage | Partial damage reduction on block. Code name: `blockRate` (ID 14). |
-| **Block Damage** | Amount of damage reduced on block | How much a block absorbs. Code name: `blockDmg` (ID 15). |
-| **Toughness** | Unknown defensive function | **Undocumented stat (ID 24)**. Possibly reduces CC duration or sustained damage. |
-| **Crit Resistance** | Reduces enemy's effective Crit Rate | **HIDDEN STAT (ID 18)** — Directly counters enemy crit chance. Not in most guides! |
-| **Focus Resistance** | Reduces enemy's effective Focus Rate | **HIDDEN STAT (ID 19)** — Directly counters enemy focus chance. Not in most guides! |
-| **Break Resistance** | Reduces enemy's effective Break Rate | **HIDDEN STAT (ID 20)** — Directly counters enemy break chance. Not in most guides! |
+| **HP** | Total health pool | `MaxHp` (1001) | How much damage you can take before dying. |
+| **DEF (Defense)** | Reduces incoming base damage | `PDef` (1005), `MDef` (1006) | **Split into Physical and Magic DEF.** Your armor. |
+| **GDR (Global Damage Reduction)** | Flat % reduction on all damage | `AllDamDef` (1039) | An always-on damage shield. The best general defensive stat. |
+| **PvP Damage Reduction** | Flat % reduction in PvP only | `PvpDamDef` (1037) | **HIDDEN STAT** — dedicated PvP defense, separate from GDR! |
+| **Evasion/Dodge** | Chance to dodge entirely | `DODGE` (1117) | Countered by `DODGE_DEF` (1118). |
+| **Block Rate** | Chance to block | `PBlock` (1014), `MBlock` (1015) | **Split into Physical and Magic Block.** |
+| **Crit Resistance** | Reduces enemy Crit Rate | `CritDef` (1009) | Directly counters enemy crit chance. |
+| **Crit Damage Defense** | Reduces enemy Crit Damage | `CritDamDef` (1011) | **HIDDEN** — even if they crit, it hits softer. |
+| **Focus Resistance** | Reduces enemy Focus Rate | `Crit2_Def` (1113) | Counters the Crit2/Focus system. |
+| **Focus Damage Defense** | Reduces enemy Focus Damage | `Crit2_DAM_DEF` (1115) | **HIDDEN** — softens focus hits. |
+| **Break Resistance** | Reduces enemy Break Rate | `CHARSTATE_POLING_DEF` (1151) | Counters the POLING/Break system. |
+| **Break Damage Defense** | Reduces enemy Break Damage | `CHARSTATE_POLING_DAM_DEF` (1153) | **HIDDEN** — softens break hits. |
+| **Effect Block** | Resists CC/debuffs | `EffectBlock` (1031) | **HIDDEN** — chance to resist stuns, silences, slows, etc. |
 
 ### Utility Stats
 
 | Stat | What It Does | Plain Language |
 |------|-------------|----------------|
-| **Speed** | Reduces cast time and GCD (global cooldown) | How fast your character attacks. More speed = more attacks per second. Code name: `speed` (ID 5). |
-| **Cooldown Reduction (CDR)** | Reduces skill cooldowns by a % | Skills come back faster. Goldstride mount gives 14% CDR. |
-| **Accuracy/Hit Rate** | Counters enemy evasion | Makes your attacks more likely to land. Code name: `hitRate` (ID 13). |
-| **Energy** | Resource used to cast skills | You spend energy on skills. Code names: `energy` (ID 21), `energyMax` (ID 22). |
-| **Penetration** | Ignores a portion of enemy DEF | Punches through tanky opponents. Code name: `penetration` (ID 23). |
-| **Healing Bonus** | Increases healing done | **HIDDEN STAT (ID 25)** — Makes your heals stronger. |
-| **Healing Received** | Increases healing received | **HIDDEN STAT (ID 26)** — Makes heals on you more effective. |
-| **Core Skill DMG** | Bonus damage % specifically for your Core Skill | Makes your signature ability hit harder. |
-| **Skill DMG** | Bonus damage % for all skills | A general multiplier for all skill-based damage. |
-| **Global DMG** | Universal damage multiplier from external sources | An always-on boost from mounts, gear, etc. (e.g., Jadesky mount: +45% Global DMG at 70%+ HP). |
+| **Speed** | Reduces cast time and GCD | `Speed` (1007) | How fast your character casts skills. |
+| **Attack Speed** | Auto-attack frequency | `CharStateAtkSpeed` (1063) | **SEPARATE from Speed!** Affects auto-attack rate, not skill cast time. |
+| **Charge Time Reduction** | Reduces skill charge-up | `CharStateChargeTimeReduction` (1064) | **Third speed-like stat** for charged abilities. |
+| **Cooldown Reduction** | Reduces skill cooldowns | `CharstateCd` (1027) | Skills come back faster. Goldstride mount gives 14% CDR. |
+| **Hit Rate** | Counters enemy dodge | `PHit` (1012), `MHit` (1013) | **Physical and Magic accuracy.** |
+| **Energy** | Resource for skills | `CHARSTATE_LINGLI` (1148) | Spiritual power (灵力) used for skills. |
+| **Energy Recovery** | Regen rate | `CharStateRecoverEnergyIncrease` (1066), `CHARSTATE_LINGLI_RECOVERY` (1147) | **Energy regen is a stat!** Not just from auto-attacks. |
+| **HP Recovery** | HP regen rate | `HpRecover` (1002) | **HIDDEN** — passive HP regeneration. |
+| **Healing Bonus** | Healing done increase | `HealAdd` (1040) | Makes your heals stronger. |
+| **Healing Reduction** | Reduces enemy healing | `HealDef` (1041) | **HIDDEN** — anti-heal stat! |
+| **Buff Duration+** | Extends buff duration | `BuffTimeAdd` (1032) | Makes your buffs last longer. |
+| **Buff Duration-** | Reduces debuff duration | `BuffTimeMns` (1033) | Makes debuffs on you wear off faster. |
+| **Effect Hit** | CC/debuff accuracy | `EffectHit` (1030) | **HIDDEN** — chance to land stuns, silences, etc. |
 
 ### Hidden/Derived Stats
 
@@ -173,7 +180,20 @@ Here's every major stat and what it actually does for your character.
 |------|-------------|----------------|
 | **Combat Power (CP)** | Server-computed weighted sum of all stats | A rough "power level" indicator. Each stat has a different CP weight. |
 
-> **Code-verified note**: All stats are stored as **int64 basis points** (10000 = 100%). Stats are layered: Base (from level/class) + Equipment + Buffs = Total. The server computes the totals.
+### Source-Specific Damage Bonuses
+
+**Each equipment source has its OWN damage bonus/defense pair** (discovered from code):
+
+| Source | Damage Bonus | Damage Defense | Plain Language |
+|--------|-------------|---------------|----------------|
+| Outfits (幻化) | `HUANHUA_DAM_ADD` (1127) | `HUANHUA_DAM_DEF` (1128) | Outfit-specific damage multiplier |
+| Spirits (器灵) | `QILING_DAM_ADD` (1129) | `QILING_DAM_DEF` (1130) | Spirit-specific damage multiplier |
+| Artifacts (法则) | `FAZE_DAM_ADD` (1131) | `FAZE_DAM_DEF` (1132) | Artifact-specific damage multiplier |
+| Pets | `PET_DAM_ADD` (1133) | `PET_DAM_DEF` (1134) | Pet-specific damage multiplier |
+
+**In plain terms**: It's not just "Global DMG" — each source (outfit, spirit, artifact, pet) has its own separate damage bonus AND a counter-stat. When community guides say "45% Global DMG from Jadesky mount," the actual stat may route through one of these source-specific channels.
+
+> **Code-verified note**: All stats are stored as **int64 basis points** (10000 = 100%). Each stat uses a **5-tier calculation**: `((Base + Add) × (1 + Pct%) + FinalAdd) × (1 + FinalPct%)`. The server computes final totals.
 
 ---
 

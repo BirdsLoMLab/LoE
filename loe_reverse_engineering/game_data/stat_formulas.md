@@ -1,62 +1,248 @@
 # LoE Stat Formulas & Damage System
 
-## Status: PARTIALLY VERIFIED — Client Code Analysis + Community Claims
+## Status: CODE-VERIFIED — Extracted from Game Client Bundle
 
 > **Analysis date:** 2026-03-18
-> **Source:** Beautified bundle `bundle-ac7a6.js` (17MB, 426K lines), protobuf definitions, embedded data structures
-> **Key finding:** Combat formulas are **server-side only**. The client receives pre-calculated damage values. Community formulas below are from player observation, NOT extracted from code.
+> **Source:** `_NumericType` class from `bundle-ac7a6.js` (L127017), protobuf definitions, embedded data
+> **Key finding:** Combat formulas are **server-side only**. But the complete stat enum, stat calculation structure, and data formats are confirmed from client code.
 
 ---
 
-## Verified: Complete Stat Type Enum (AttrType)
+## CODE-VERIFIED: Complete NumericType Stat Enum
 
-Extracted from `embedded_data/data_structures.json` — the **definitive list of all 26 stats** in the game:
+Extracted directly from `js_fragments/formula__NumericType_L127017.js` — the **actual game code**, not a summary.
 
-| ID | Code Name | Community Name | Category | Notes |
-|----|-----------|---------------|----------|-------|
-| 1 | `hp` | HP | Defensive | Current health |
-| 2 | `hpMax` | Max HP | Defensive | Health pool cap |
-| 3 | `atk` | ATK | Offensive | Base attack power |
-| 4 | `def` | DEF | Defensive | Base defense |
-| 5 | `speed` | Speed | Utility | Affects cast time and GCD |
-| 6 | `critRate` | Crit Rate | Offensive Gate | Chance to crit (%) |
-| 7 | `critDmg` | Crit Damage | Offensive Gate | Bonus damage on crit (%) |
-| 8 | `focusRate` | Focus Rate | Offensive Gate | Chance to focus (%) |
-| 9 | `focusDmg` | Focus Damage | Offensive Gate | Bonus damage on focus (%) |
-| 10 | `breakRate` | Break Rate | Offensive Gate | Chance to break (%) |
-| 11 | `breakDmg` | Break Damage | Offensive Gate | Bonus damage on break (%) |
-| 12 | `dodgeRate` | Evasion/Dodge | Defensive | Chance to dodge (%) |
-| 13 | `hitRate` | Accuracy/Hit Rate | Offensive | Counters dodge (%) |
-| 14 | `blockRate` | Block Rate | Defensive | Chance to block (%) |
-| 15 | `blockDmg` | Block Damage/Reduction | Defensive | Damage reduced on block (%) |
-| **16** | **`dmgAdd`** | **GDB (Global Damage Bonus)** | **Offensive** | **Flat % added to all damage** |
-| **17** | **`dmgReduce`** | **GDR (Global Damage Reduction)** | **Defensive** | **Flat % reduction on all damage** |
-| **18** | **`critRes`** | **Crit Resistance** | **Defensive Gate** | **Counters enemy Crit Rate — UNDOCUMENTED in most guides** |
-| **19** | **`focusRes`** | **Focus Resistance** | **Defensive Gate** | **Counters enemy Focus Rate — UNDOCUMENTED in most guides** |
-| **20** | **`breakRes`** | **Break Resistance** | **Defensive Gate** | **Counters enemy Break Rate — UNDOCUMENTED in most guides** |
-| 21 | `energy` | Energy | Utility | Current energy for skills |
-| 22 | `energyMax` | Max Energy | Utility | Energy pool cap |
-| 23 | `penetration` | Penetration | Offensive | Ignores portion of DEF |
-| **24** | **`toughness`** | **Toughness** | **Defensive** | **Undocumented defensive stat** |
-| **25** | **`healAdd`** | **Healing Bonus** | **Utility** | **Increases healing done — UNDOCUMENTED** |
-| **26** | **`healReceive`** | **Healing Received** | **Utility** | **Increases healing received — UNDOCUMENTED** |
+### Core Combat Stats (1000–1019)
 
-### Newly Discovered Stats (Not in Community Guides)
-- **critRes / focusRes / breakRes (IDs 18-20)**: These are **defensive gate counters**. They reduce the enemy's effective Crit/Focus/Break Rate. This means the damage formula has a defensive layer for each gate that community guides don't mention.
-- **toughness (ID 24)**: Unknown purpose. Possibly reduces CC duration or damage from sustained sources.
-- **healAdd / healReceive (IDs 25-26)**: Healing stats exist, suggesting healing builds may be viable.
+| ID | Code Name | Community Name | 5-Tier Scaling | Notes |
+|----|-----------|---------------|:-:|-------|
+| 1000 | `Hp` | HP (Current) | Yes | Current health |
+| 1001 | `MaxHp` | Max HP | Yes | Health pool cap |
+| 1002 | `HpRecover` | HP Recovery | Yes | **HP regen rate — not in community guides** |
+| 1003 | `PAtk` | Physical ATK | Yes | **Physical attack — game has Phys/Magic split!** |
+| 1004 | `MAtk` | Magic ATK | Yes | **Magic attack — community guides just say "ATK"** |
+| 1005 | `PDef` | Physical DEF | Yes | **Physical defense** |
+| 1006 | `MDef` | Magic DEF | Yes | **Magic defense** |
+| 1007 | `Speed` | Speed | Yes | Affects cast time and GCD |
+| 1008 | `Crit` | Crit Rate | Yes | Critical hit chance |
+| 1009 | `CritDef` | Crit Resistance | Yes | **Counters enemy Crit Rate** |
+| 1010 | `CritDam` | Crit Damage | Yes | Bonus damage on crit |
+| 1011 | `CritDamDef` | Crit Damage Defense | Yes | **Reduces enemy Crit Damage — UNDOCUMENTED** |
+| 1012 | `PHit` | Physical Hit Rate | Yes | Physical accuracy |
+| 1013 | `MHit` | Magic Hit Rate | Yes | Magic accuracy |
+| 1014 | `PBlock` | Physical Block | Yes | Physical block chance |
+| 1015 | `MBlock` | Magic Block | Yes | Magic block chance |
+| 1016 | `PPrecise` | Physical Precision | Yes | **Physical penetration — bypasses PBlock** |
+| 1017 | `MPrecise` | Magic Precision | Yes | **Magic penetration — bypasses MBlock** |
+| 1018 | `AtkMst` | Attack Mastery | Yes | Attack mastery bonus |
+| 1019 | `DefMst` | Defense Mastery | Yes | Defense mastery bonus |
+
+### Skill & Spirit Interaction Stats (1020–1025)
+
+| ID | Code Name | Meaning |
+|----|-----------|---------|
+| 1020 | `PlayerAtkSkillA` | Player attack from Skill source A |
+| 1021 | `PlayerDefSkillA` | Player defense from Skill source A |
+| 1022 | `AtkPlayerSpirt` | Spirit ATK contribution (5-tier) |
+| 1023 | `DefPlayerSpirt` | Spirit DEF contribution (5-tier) |
+| 1024 | `PlayerAtkAttackA` | Player ATK from Attack source A |
+| 1025 | `PlayerDefAttackA` | Player DEF from Attack source A |
+
+### Advanced Combat Mechanics (1026–1070)
+
+| ID | Code Name | Community Name | Notes |
+|----|-----------|---------------|-------|
+| 1026 | `DoubleHit` | Double Hit | **Double attack chance — UNDOCUMENTED** |
+| 1027 | `CharstateCd` | Cooldown | CDR stat (5-tier) |
+| 1028 | `Pass` | Pass/Bypass | Unknown — possibly passive skill pass-through |
+| 1029 | `Hit` | Hit Rate | General accuracy (5-tier) |
+| 1030 | `EffectHit` | Effect Hit | **CC/Debuff accuracy — UNDOCUMENTED** |
+| 1031 | `EffectBlock` | Effect Block | **CC/Debuff resistance — UNDOCUMENTED** |
+| 1032 | `BuffTimeAdd` | Buff Duration+ | Increases buff duration (5-tier) |
+| 1033 | `BuffTimeMns` | Buff Duration- | Reduces debuff duration received (5-tier) |
+| 1034 | `ActiveSkillAddA` | Active Skill Bonus A | |
+| 1035 | `ActiveSkillSubA` | Active Skill Reduction A | |
+| 1036 | `TargetDamAdd` | Target Damage Bonus | **Extra damage on marked/debuffed targets (5-tier)** |
+| **1037** | **`PvpDamDef`** | **PvP Damage Reduction** | **DEDICATED PvP defense stat! (5-tier)** |
+| **1038** | **`AllDamAdd`** | **GDB (Global Damage Bonus)** | **All damage increase (5-tier) — confirmed as community "GDB"** |
+| **1039** | **`AllDamDef`** | **GDR (Global Damage Reduction)** | **All damage reduction (5-tier) — confirmed as community "GDR"** |
+| 1040 | `HealAdd` | Healing Bonus | Increases healing done (5-tier) |
+| 1041 | `HealDef` | Healing Reduction | **Reduces enemy healing — UNDOCUMENTED** |
+| 1042 | `CharstateReduceCdDef` | CDR Resistance | Counters enemy CDR effects |
+| 1043 | `CharstateDoubleHitDef` | Double Hit Defense | Counters Double Hit |
+
+### Crit Sub-Systems (1044–1055)
+
+**The game has SEPARATE crit systems for different action types:**
+
+| ID | Code Name | Meaning |
+|----|-----------|---------|
+| 1044 | `AttackCrit` | Normal Attack Crit Rate |
+| 1045 | `CharstateAttackCritDef` | Normal Attack Crit Resistance |
+| 1046 | `CharstateAttackCritDam` | Normal Attack Crit Damage (5-tier) |
+| 1047 | `CharstateAttackCritDamDef` | Normal Attack Crit Damage Defense (5-tier) |
+| **1048** | **`CoreSkillCrit`** | **Core Skill Crit Rate** |
+| 1049 | `CharstateSkillCritDef` | Skill Crit Resistance |
+| 1050 | `CharstateSkillCritDam` | Skill Crit Damage (5-tier) |
+| 1051 | `CharstateSkillCritDamDef` | Skill Crit Damage Defense (5-tier) |
+| 1052 | `ActiveSkillCrit` | Active Skill Crit Rate |
+| 1053 | `CharstateBuffCritDef` | Buff Crit Resistance |
+| 1054 | `CharstateBuffCritDam` | Buff Crit Damage (5-tier) |
+| 1055 | `CharstateBuffCritDamDef` | Buff Crit Damage Defense (5-tier) |
+
+**Key insight**: Crit Rate/Damage isn't just one stat — it's **split by action type** (Normal Attack, Core Skill, Active Skill, Buff/Proc). This means stacking Core Skill Crit (1048) is critical for Swordsman, not just general Crit (1008).
+
+### Speed & Energy (1062–1066)
+
+| ID | Code Name | Community Name | Notes |
+|----|-----------|---------------|-------|
+| 1062 | `CharstateMaxEnergy` | Max Energy | Energy pool cap |
+| **1063** | **`CharStateAtkSpeed`** | **Attack Speed** | **SEPARATE from Speed (1007)!** |
+| **1064** | **`CharStateChargeTimeReduction`** | **Charge Time Reduction** | **Reduces skill charge-up time** |
+| 1065 | `CharStateReduction` | General Reduction | Unknown — possibly general damage reduction |
+| **1066** | **`CharStateRecoverEnergyIncrease`** | **Energy Recovery Increase** | **Boosts energy regen — UNDOCUMENTED** |
+| 1067–1070 | `PassiveSkillAdd/Sub A/B` | Passive Skill Modifiers | |
+
+### Elemental/Type Damage (1071–1110)
+
+| ID Range | Code Name | Meaning |
+|-----------|-----------|---------|
+| 1071–1080 | `DamageTypeAdd1-10` | Element-specific damage bonuses (maps to 10 damage types) |
+| 1081 | `FixedAddAttack` | Fixed bonus to normal attacks |
+| 1082 | `FixedAddCoreSkill` | Fixed bonus to Core Skill |
+| 1083 | `FixedAddActiveSkill` | Fixed bonus to Active Skills |
+| 1084 | `FixedAddPassiveSkill` | Fixed bonus to Passive Skills |
+| 1085 | `FixedAddSpirit` | Fixed bonus to Spirit attacks |
+| 1086–1089 | `SkillDamageAdd/Sub A/B` | Skill damage modifiers |
+| 1090 | `SkillDamageFixedAdd` | Fixed skill damage bonus |
+| 1091 | `FieldSkillCD` | Field skill cooldown |
+| 1092–1094 | `FieldSkillDamage Add/Sub/Fixed` | Field skill damage modifiers |
+| 1095–1099 | `AllSkillType Add/Sub/Fixed` | All skill type modifiers |
+| **1100** | **`DamageMaxHp`** | **Max HP-based damage** | **% of max HP as damage — UNDOCUMENTED** |
+| 1101–1110 | `DamageTypeFixed1-10` | Fixed element-specific damage |
+
+### "Focus" System = Crit2 (1112–1115)
+
+**CRITICAL DISCOVERY: "Focus" is literally "Crit2" in the game code — a second crit system:**
+
+| ID | Code Name | Community Name | Notes |
+|----|-----------|---------------|-------|
+| **1112** | **`Crit2`** | **Focus Rate** | **Community calls it "Focus" — code calls it "Crit2"** |
+| **1113** | **`Crit2_Def`** | **Focus Resistance** | Counters Focus Rate |
+| **1114** | **`Crit2_DAM`** | **Focus Damage** | Bonus damage on "focus" hit |
+| **1115** | **`Crit2_DAM_DEF`** | **Focus Damage Defense** | Reduces Focus Damage taken |
+
+### Penetration, Dodge & Monster Stats (1116–1121)
+
+| ID | Code Name | Community Name | Notes |
+|----|-----------|---------------|-------|
+| **1116** | **`DILI`** | **Penetration** | **Confirmed: DILI = penetration, not "Damage-In/Out ratio"** |
+| 1117 | `DODGE` | Dodge/Evasion | Dodge chance |
+| 1118 | `DODGE_DEF` | Anti-Dodge | Counters enemy dodge |
+| 1119 | `MONSTER_DAM_ADD` | Monster Damage Bonus | Extra damage vs PvE monsters |
+| 1120 | `CRIT_EXTRA_ADD` | Extra Crit Bonus | Additional crit bonus |
+| 1121 | `CRIT2_EXTRA_ADD` | Extra Focus Bonus | Additional focus bonus |
+
+### Source-Specific Damage Bonuses (1127–1144)
+
+**Each equipment source has its OWN damage bonus/defense stats:**
+
+| ID | Code Name | Chinese | Meaning |
+|----|-----------|---------|---------|
+| 1127 | `CHARSTATE_HUANHUA_DAM_ADD` | 幻化 | **Outfit/Skin damage bonus** |
+| 1128 | `CHARSTATE_HUANHUA_DAM_DEF` | | Outfit damage defense |
+| 1129 | `CHARSTATE_QILING_DAM_ADD` | 器灵 | **Spirit damage bonus** |
+| 1130 | `CHARSTATE_QILING_DAM_DEF` | | Spirit damage defense |
+| 1131 | `CHARSTATE_FAZE_DAM_ADD` | 法则 | **Artifact/Relic damage bonus** |
+| 1132 | `CHARSTATE_FAZE_DAM_DEF` | | Artifact damage defense |
+| 1133 | `CHARSTATE_PET_DAM_ADD` | | **Pet damage bonus** |
+| 1134 | `CHARSTATE_PET_DAM_DEF` | | Pet damage defense |
+| 1135–1144 | `*_B` variants | | Second tier of source-specific bonuses |
+
+### "Break" System = POLING 破灵 (1146–1154)
+
+**CRITICAL DISCOVERY: "Break" is "POLING" (破灵 = "Break Spirit") in the code:**
+
+| ID | Code Name | Community Name | Notes |
+|----|-----------|---------------|-------|
+| 1146 | `CHARSTATE_DILI_DEF` | Penetration Defense | Counters DILI/Penetration |
+| **1147** | **`CHARSTATE_LINGLI_RECOVERY`** | **Energy Recovery** | **Energy regen rate (灵力 = spiritual power)** |
+| 1148 | `CHARSTATE_LINGLI` | Current Energy | Current energy pool |
+| 1149 | `CHARSTATE_LINGLI_MAX` | Max Energy | Energy cap |
+| **1150** | **`CHARSTATE_POLING`** | **Break Rate** | **破灵 = "Break Spirit" — this IS the Break system** |
+| 1151 | `CHARSTATE_POLING_DEF` | Break Resistance | Counters Break Rate |
+| 1152 | `CHARSTATE_POLING_DAM` | Break Damage | Bonus damage on break |
+| 1153 | `CHARSTATE_POLING_DAM_DEF` | Break Damage Defense | Reduces Break Damage taken |
+| 1154 | `CHARSTATE_POLING_EXTRA_ADD` | Extra Break Bonus | Additional break bonus |
+
+### Special
+
+| ID | Code Name | Meaning |
+|----|-----------|---------|
+| 9999 | `hudunBase` | Shield base value (护盾 = shield) |
+
+### Meta-Stats (Low IDs)
+
+| ID | Code Name | Meaning |
+|----|-----------|---------|
+| 59 | `ATK_FIXED` | Fixed ATK bonus |
+| 72 | `ENHANCEMENT_ATK_ADD` | Enhancement ATK |
+| 73 | `ENHANCEMENT_DEF_ADD` | Enhancement DEF |
+| 74 | `ENHANCEMENT_HP_ADD` | Enhancement HP |
+| 81–90 | `RACE_1_ATK_PER1-10` | Race-specific ATK % bonuses (10 races/types) |
+| 91–100 | `AREA_1_ATK_PER1-10` | Area-specific ATK % bonuses (10 areas) |
+| 101–156 | `GAMEPLAY_1-16_ATK_PER` | Gameplay mode ATK bonuses |
+| 116 | `HOOK_AWARD` | AFK/Idle reward bonus |
+| 117 | `HOOK_TIME_ADD` | AFK time extension |
+| 121–171 | `GAMEPLAY_1-16_DAM` | Gameplay mode damage bonuses |
+| 136–186 | `GAMEPLAY_1-16_DEF` | Gameplay mode defense bonuses |
 
 ---
 
-## Verified: Stat Storage Format
+## CODE-VERIFIED: 5-Tier Stat Calculation Formula
 
-- All stat values are stored as **int64 (basis points)**: `10000 = 100%`
-- Example: Empyrean Sword's 1060% ATK coefficient is stored as `damageCoeff: 10600`
-- Percentage stats (Crit Rate, GDB, etc.) use the same basis point format
+Every stat with "5-tier scaling" follows this pattern:
+
+```
+StatID + 1 = Base
+StatID + 2 = Add (flat addition)
+StatID + 3 = Pct (percentage bonus, basis points)
+StatID + 4 = FinalAdd (final flat addition)
+StatID + 5 = FinalPct (final percentage bonus, basis points)
+```
+
+**Example:** Speed (1007) has sub-components:
+- `SpeedBase` = 10071
+- `SpeedAdd` = 10072
+- `SpeedPct` = 10073
+- `SpeedFinalAdd` = 10074
+- `SpeedFinalPct` = 10075
+
+**Speculative formula** (standard for this pattern in RPGs):
+```
+FinalStat = ((Base + Add) × (1 + Pct/10000) + FinalAdd) × (1 + FinalPct/10000)
+```
+
+This means:
+1. Start with Base value
+2. Add flat bonuses (from gear, buffs)
+3. Multiply by percentage bonuses (from skills, passives)
+4. Add final flat bonuses (from special sources)
+5. Multiply by final percentage bonuses (from ultimate abilities, late-game systems)
+
+The two-stage multiply (Pct then FinalPct) prevents early-game % bonuses from scaling with late-game flat additions.
 
 ---
 
-## Verified: Damage Gate Independence
+## CODE-VERIFIED: Stat Storage Format
+
+- `_NumericType.Max = 1e4` (10000) — confirms **basis points** format
+- All percentage values stored as integers: `10000 = 100%`, `5000 = 50%`, `10600 = 106%`
+- Stat values use int64 for large numbers (game implements custom BigNumber class for values exceeding 2^53)
+
+---
+
+## CODE-VERIFIED: Damage Gate Independence
 
 From protobuf `AttackResult` message:
 ```protobuf
@@ -69,232 +255,110 @@ message AttackResult {
 }
 ```
 
-**VERIFIED**: Crit, Focus, and Break are **independent boolean rolls**. A single hit CAN be Crit + Focus + Break simultaneously. They are NOT mutually exclusive.
+**VERIFIED**: Crit (1008), Focus/Crit2 (1112), and Break/POLING (1150) are **independent boolean rolls**. All three CAN trigger simultaneously.
 
-This supports the community's multiplicative gate formula where all three can trigger on the same hit.
-
----
-
-## Verified: Buff Modifier Types
-
-From protobuf `BuffEffect` message:
-```protobuf
-message BuffEffect {
-    int32 attrType = 2;     // Which stat (maps to AttrType 1-26)
-    int32 changeType = 3;   // How the stat is modified
-    int64 value = 4;        // Amount
-}
-```
-
-`changeType` has three modes:
-1. **Flat Add** — Adds a fixed value to the stat
-2. **Percent Add** — Adds a percentage of base value
-3. **Multiply** — Multiplies the current value
-
-This confirms the damage system uses **both additive and multiplicative** modifiers, consistent with the community's layered formula.
+Each gate has an attack/defense pair:
+- Crit: `Crit` (1008) vs `CritDef` (1009), damage: `CritDam` (1010) vs `CritDamDef` (1011)
+- Focus: `Crit2` (1112) vs `Crit2_Def` (1113), damage: `Crit2_DAM` (1114) vs `Crit2_DAM_DEF` (1115)
+- Break: `POLING` (1150) vs `POLING_DEF` (1151), damage: `POLING_DAM` (1152) vs `POLING_DAM_DEF` (1153)
 
 ---
 
 ## UNVERIFIED: Community Formulas
 
-These formulas are from community observation. They CANNOT be verified from the client code because **all combat calculations happen server-side**. The client only receives the final damage number.
+These formulas are from community observation. They CANNOT be verified from the client code because **all combat calculations happen server-side**.
 
 ### Damage Formula (Community-Claimed)
 ```
 Final = Base_Damage × (1 + CritDmg) × (1 + FocusDmg) × (1 + BreakDmg) × GDB_Multiplier
 ```
 
-**Analysis**: The independent boolean flags for Crit/Focus/Break support this multiplicative structure. However, the existence of **critRes, focusRes, breakRes** (IDs 18-20) suggests the gate rates are contested:
-```
-Effective_CritRate = max(0, CritRate - Enemy_CritRes)   [SPECULATIVE]
-Effective_FocusRate = max(0, FocusRate - Enemy_FocusRes) [SPECULATIVE]
-Effective_BreakRate = max(0, BreakRate - Enemy_BreakRes) [SPECULATIVE]
-```
+**Analysis**: The independent gate flags support multiplicative structure. The code reveals it's more complex than community guides suggest:
+- Each gate rate is **contested**: e.g., `Effective_CritRate = f(Crit - CritDef)` [exact formula unknown]
+- Each gate damage is **also contested**: e.g., `Effective_CritDam = f(CritDam - CritDamDef)` [exact formula unknown]
+- There are **per-action-type crit rates** (AttackCrit, CoreSkillCrit, ActiveSkillCrit) layered on top
 
 ### GDB/GDR Formula (Community-Claimed)
 ```
-Multiplier = max(0.3, 1 + Attacker_dmgAdd - Defender_dmgReduce)
+Multiplier = max(0.3, 1 + AllDamAdd - AllDamDef)
 ```
 
-**Analysis**: The stat names `dmgAdd` (ID 16) and `dmgReduce` (ID 17) confirm these exist. The 0.3 floor is **NOT confirmed** in client code.
+**Analysis**: `AllDamAdd` (1038) and `AllDamDef` (1039) confirmed. The 0.3 floor is **NOT confirmed**. Note that there's also **PvpDamDef** (1037) which may be a separate PvP-only reduction layer.
 
 ### Speed / Cast Time (Community-Claimed)
 ```
 Cast_Time = Base_Cast_Time / (1 + Speed%)
 ```
 
-**Analysis**: Speed is confirmed as AttrType ID 5. The formula is **NOT verified** from client code. The GCD cap is unknown.
+**Analysis**: Speed (1007), AtkSpeed (1063), and ChargeTimeReduction (1064) are **three separate stats**. The community formula may only account for Speed and miss AtkSpeed and ChargeTimeReduction.
 
-### Energy Regeneration (Unknown)
+### Energy Regeneration
 ```
-Energy regen formula: UNKNOWN — server-side only
+Energy regen: CharStateRecoverEnergyIncrease (1066) + CHARSTATE_LINGLI_RECOVERY (1147)
 ```
-The client receives `energy` and `energyMax` values. Regeneration is calculated server-side.
+Energy regen is NOT just from auto-attacks — there are **dedicated stats** that increase it.
 
 ---
 
-## Verified: Skill System Structure
+## Major Corrections to Community Guides
 
-From protobuf `SkillData` and JS fragments:
+### 1. Physical vs Magic Split
+Community guides say "ATK" and "DEF" as single stats. The code reveals **separate Physical and Magic** for Attack (PAtk/MAtk), Defense (PDef/MDef), Hit Rate (PHit/MHit), Block (PBlock/MBlock), and Precision (PPrecise/MPrecise). This suggests class-dependent damage types.
 
-```
-SkillData = {
-    skillId: int32,
-    level: int32,          // Max 150 for Core skills
-    type: int32,           // 1=Core, 2=Active, 3=Passive, 4=Ultimate
-    energyCost: int32,     // Per-skill energy cost
-    cooldown: int32,       // In milliseconds
-    damageCoeff: int32,    // Basis points (10600 = 1060%)
-    hitCount: int32,       // Multi-hit count
-    aoeType: int32,        // 0=Single, 1=Circle, 2=Rectangle, 3=Cone
-    aoeRange: int32,       // AoE size
-    buffIds: int32[]       // Buff/debuff IDs applied on hit
-}
-```
+### 2. "Focus" = Crit2
+What the community calls "Focus" is literally `Crit2` in the code — a duplicate of the crit system with its own rate, damage, defense, and damage defense stats. It's not a unique mechanic; it's a second crit roll.
 
-### Known Skill Coefficients (from community guides)
-| Skill | Class | Coefficient | Hits | AoE | Source |
-|-------|-------|-------------|------|-----|--------|
-| Empyrean Sword | Swordsman (Core) | 1060% ATK + flat | 1 | Single | Guides |
-| Divining Blade | Swordsman (Active) | +95% ATK SPD buff, +22% DMG | - | Self | Guides |
-| Tidebreaker | Swordsman | 30% ATK | 1 | Single | Guides |
-| Draconic Strike | Swordsman | 320% ATK | 3 | Circle | Guides |
-| Soulshock Slash | Spirit (Warshade) | 200% ATK | 5 | Circle (front) | Guides |
-| Empyrean Shot | Spirit (Sunpiercer) | 480% ATK | 2 | Circle (front) | Guides |
-| Mystfeather Flight | Spirit (Skysong) | 730% ATK total | 1 | Rectangle (front) | Guides |
+### 3. "Break" = POLING (破灵)
+The Break system (`CHARSTATE_POLING`) is separate from the other gates and appears later in the stat enum (1150+). It has its own rate/defense/damage/damage-defense quartet.
+
+### 4. DILI = Penetration
+Community speculation that DILI is "Damage-In/Damage-Out ratio" is **wrong**. DILI (1116) is a penetration stat, with DILI_DEF (1146) as its counter.
+
+### 5. Source-Specific Damage
+Each source (Outfit, Spirit, Artifact, Pet) has its **own damage bonus/defense stat pair** (1127–1144). "Global DMG" from the community may not be truly global — it may be source-specific bonuses that look global.
+
+### 6. Separate Crit Per Action Type
+There are **different crit stats** for Normal Attacks (1044), Core Skills (1048), and Active Skills (1052). Building "Crit" generically may miss the per-skill-type bonuses.
+
+### 7. PvP-Specific Defense
+`PvpDamDef` (1037) is a **dedicated PvP damage reduction stat** — separate from GDR (AllDamDef). This may only activate in PvP modes.
+
+### 8. Speed ≠ Attack Speed
+`Speed` (1007) and `CharStateAtkSpeed` (1063) are **different stats**. Speed likely affects cast time/GCD while AtkSpeed affects auto-attack frequency. `CharStateChargeTimeReduction` (1064) is a third speed-like stat for charge skills.
 
 ---
 
-## Verified: Element System
+## Verified: Config Table References
 
-6 elements confirmed from `ElementType` enum:
+The following JSON configs are loaded from CDN at runtime (not embedded in client):
 
-| ID | Element |
-|----|---------|
-| 1 | Fire |
-| 2 | Water |
-| 3 | Wind |
-| 4 | Thunder |
-| 5 | Earth |
-| 6 | Ice |
-
----
-
-## Verified: Equipment Data Structure
-
-From protobuf `EquipData`:
-```
-Equipment = {
-    id: int32,
-    pos: int32,              // Slot position (15 total: 9 regular + 6 class-exclusive)
-    level: int32,            // Enhancement level
-    quality: int32,          // 1=White, 2=Green, 3=Blue, 4=Purple, 5=Orange, 6=Red
-    starLevel: int32,        // Star upgrade level
-    attrs: AttrData[],       // Base stats [{type, value}]
-    refineAttrs: AttrData[], // Refined/rerolled stats
-    setId: int32             // Relic set identifier
-}
-```
-
-### Equipment Quality Tiers (Verified)
-| Quality ID | Color | Community Name | Display Name |
-|-----------|-------|---------------|--------------|
-| 1 | White | Common | Common |
-| 2 | Green | Uncommon | Uncommon |
-| 3 | Blue | R (Rare) | Rare |
-| 4 | Purple | SR (Super Rare) | Epic |
-| 5 | Orange | SSR | Legendary |
-| 6 | Red | SSSR | Mythic |
+| Config File | Purpose |
+|-------------|---------|
+| `CareerDislayConfig.json` | Class display configuration |
+| `UnitConfig.json` | Unit/character base configs |
+| `Buff.json` | Buff/debuff definitions |
+| `skillInitialSlot.json` | Starting skill slot configuration |
+| `skillSlotData.json` | Skill slot progression data |
+| `faxiang_huanhua.json` | Outfit/skin system (法相幻化) |
+| `faxiang_baoshi.json` | Artifact gem/stone system (法相宝石) |
+| `faxiang_base.json` | Artifact base config (法相) |
+| `faxiang_equip_main.json` | Artifact main equipment |
+| `dungeon_data.json` | Dungeon/instance configuration |
+| `fishing_fish.json` | Fishing system |
+| `fishing_lev.json` | Fishing level config |
+| `fishing_spot.json` | Fishing spot config |
+| `color.json` | Color scheme/rarity colors |
+| `mainUIbtn.json` | Main UI button layout |
+| `itemBase.json` | Item base definitions |
 
 ---
 
-## Verified: Spirit System
+## SkillHelper Constants
 
-From JS fragments and protobuf:
+```javascript
+SkillHelper.LevelDemolition = 1000  // Level demolition threshold
+SkillHelper.LevelUnit = 30          // Level unit granularity
 ```
-Spirit = {
-    id: int32,
-    level: int32,
-    star: int32,             // 0 to 6 (7 star levels)
-    quality: int32,          // Rarity tier
-    skillIds: int32[],       // Spirit ability IDs
-    attrs: AttrData[],       // Stat contributions (additive to player)
-    exp: int64,
-    expMax: int64
-}
-```
-
-- **Deploy limit**: 3 spirits max
-- **Star-up increases a stat MULTIPLIER** (not flat addition)
-- **Spirit skill trigger system**: triggerType (when), triggerRate (chance %), duration (ms)
-- **Inheritance**: transfers level/star from source to target, consumes source
-
----
-
-## Verified: Pet System (Separate from Spirits)
-
-```
-Pet = {
-    id: int32,
-    generation: int32,       // 1-5 (Gen 5 = max)
-    level: int32,
-    growthRate: int32,       // Influences all stat scaling
-    traits: int32[],         // Trait IDs (common/rare/epic/legendary + hidden)
-    attrs: AttrData[],       // Stat contributions
-    breedCount: int32
-}
-```
-
-- Breeding: offspring inherit traits + chance of generation increase
-- Hidden traits activate conditionally
-
----
-
-## Verified: Buff/Debuff Types
-
-| ID | Type | Description |
-|----|------|-------------|
-| 1 | statBuff | Positive stat modifier |
-| 2 | statDebuff | Negative stat modifier |
-| 3 | dot | Damage over time |
-| 4 | hot | Heal over time |
-| 5 | shield | Damage absorption |
-| 6 | stun | Cannot act |
-| 7 | silence | Cannot use skills |
-| 8 | slow | Reduced speed |
-| 9 | immobilize | Cannot move |
-
----
-
-## Verified: Stat Layering System
-
-From protobuf `PlayerStats`:
-```
-PlayerStats = {
-    baseAttrs: AttrData[],   // From level and class
-    equipAttrs: AttrData[],  // From all equipment
-    buffAttrs: AttrData[],   // From active buffs
-    totalAttrs: AttrData[],  // Final calculated totals (server-computed)
-    combatPower: int64       // CP (server-computed weighted sum)
-}
-```
-
-Stats are layered: **Base + Equipment + Buffs = Total**. The server computes totals and sends them to the client.
-
----
-
-## Open Questions (Server-Side — Cannot Verify from Client)
-
-- [ ] Exact damage formula (ATK vs DEF interaction, multiplier order)
-- [ ] GDB/GDR 0.3 floor confirmation
-- [ ] How critRes/focusRes/breakRes reduce effective gate rates
-- [ ] Speed / GCD formula and cap
-- [ ] Energy regeneration per basic attack
-- [ ] Combat Power weight per stat type
-- [ ] Penetration vs DEF interaction
-- [ ] Toughness (ID 24) function
-- [ ] Skill coefficient scaling tables per level
-- [ ] Block damage reduction formula
 
 ---
 
@@ -304,18 +368,40 @@ The LoE client is a **thin rendering layer**:
 - Built with **Laya Engine** + **FairyGUI** for UI
 - Communication via **WebSocket** with **protobuf** serialization
 - All combat calculations are **server-side** — the client only displays results
-- Config tables (CfgSkillList, CfgEquipList, etc.) are loaded from CDN at runtime, not embedded in the client
-- The "formula" keyword hits in the bundle (86 total) are almost entirely `Math.floor/ceil/round` for **UI display formatting**, not combat calculations
+- Config tables loaded from CDN: `sydh-cdnres.joyagegames.com/EN/stable/mix_wx_pangu/common/`
+- The client uses an **ECS (Entity Component System)** architecture for game objects
+- Custom `BigNumber` class handles values exceeding JavaScript's safe integer limit
+- Positions scaled by 100× between server and client: `posC2S(x,y)` = `{floor(100*x), floor(-100*y)}`
+
+---
+
+## Open Questions (Server-Side — Cannot Verify from Client)
+
+- [ ] Exact damage formula (PAtk/MAtk vs PDef/MDef interaction, multiplier order)
+- [ ] GDB/GDR floor value (0.3 claimed by community)
+- [ ] How gate contests work (Crit vs CritDef, etc. — subtraction? division? rating formula?)
+- [ ] Speed vs AtkSpeed vs ChargeTimeReduction — how they combine
+- [ ] Energy regeneration base rate and scaling
+- [ ] Combat Power weight per stat type
+- [ ] DILI vs PDef/MDef interaction (additive or multiplicative penetration?)
+- [ ] What AtkMst (1018) and DefMst (1019) actually do
+- [ ] What Pass (1028) does
+- [ ] Skill coefficient scaling tables per level
+- [ ] Block damage reduction formula (PBlock/MBlock)
+- [ ] DoubleHit (1026) proc mechanics and damage
+- [ ] EffectHit (1030) vs EffectBlock (1031) interaction for CC landing
+- [ ] How DamageMaxHp (1100) calculates % max HP damage
 
 ---
 
 ## Sources
 
 ### Client Code (Primary)
-- `bundle-ac7a6.js` — 17MB beautified game bundle (426K lines)
-- `embedded_data/data_structures.json` — AttrType enum, quality tiers, element types
-- `embedded_data/proto_definitions.js` — 40K lines of protobuf client-server protocol
-- `embedded_data/config_tables.json` — Config table structure references
+- `bundle-ac7a6.js` L127017 — `_NumericType` class (complete stat enum)
+- `bundle-ac7a6.js` L128405 — `SkillHelper`, `AttackComponent` classes
+- `embedded_data/proto_definitions.js` — 40K lines of protobuf protocol
+- `embedded_data/data_structures.json` — Simplified stat summary (superseded by NumericType)
+- `embedded_data/config_tables.json` — Config table references
 
 ### Community (Secondary)
 - [Legend of Elements Wiki](https://www.legendofelements.com/characters/swordsman)
