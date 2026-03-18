@@ -364,23 +364,106 @@ Likely formula: `FinalStat = ((Base + Add) × (1 + Pct/10000) + FinalAdd) × (1 
 
 ## Protobuf Structures
 
-### AttackResult
+**Source:** `embedded_data/proto_definitions.js` (40K lines)
+
+### DamHealType Enum (L31868-31872)
 ```
-damage: int32          // Final damage value
-damageType: int32      // Normal, Crit, Focus, Break, True
-isCrit: bool           // Independent
-isFocus: bool          // Independent
-isBreak: bool          // Independent
+0 = Zero
+1 = Damage
+2 = Heal
+3 = LingLi_Heal (灵力 Spiritual Energy healing)
 ```
 
-### dmgSubType Bitmask
+### DamageChangeType / dmgSubType Bitmask (L31873-31876 + L413500)
 ```
-0x01 = Crit (dmgSubType |= 1)
-0x02 = Block (dmgSubType |= 2)
-0x04 = Dodge (dmgSubType |= 4)
-0x20 = Focus/Crit2 (dmgSubType |= 32)
-0x200 = Break/POLING (dmgSubType |= 512)
+0x00  =   0 = Normal
+0x01  =   1 = Crit
+0x02  =   2 = Block
+0x04  =   4 = Dodge
+0x08  =   8 = NotPass (pass-through failed?)
+0x20  =  32 = Crit2 / Focus
+0x100 = 256 = Hypoxia (unknown — possibly suffocation/DoT)
+0x200 = 512 = PoLing / Break (破灵)
 ```
+
+### DamageHealInfo (L31876-31920)
+```protobuf
+message DamageHealInfo {
+    uint64 thisid = 1;        // Target entity ID
+    string hpChange = 2;      // HP change amount (string for large values)
+    int32 type = 3;           // DamHealType (0-3)
+    uint32 ctype = 4;         // DamageChangeType bitmask
+    bool dead = 5;            // Target died
+    string lingliChange = 6;  // Spiritual energy change
+}
+```
+
+### SkillEffect (L31983-32038)
+```protobuf
+message SkillEffect {
+    uint64 thisid = 1;
+    uint32 skilllevelid = 2;
+    uint32 curStep = 3;
+    uint32 stepType = 4;
+    repeated Target targets = 5;
+    repeated DamageHealInfo damHealList = 6;
+    repeated BuffInfo buffList = 7;
+    repeated MoveInfo moveList = 8;
+}
+```
+
+### Buff (L31657-31680)
+```protobuf
+message Buff {
+    uint32 id = 1;
+    uint32 num = 2;          // Stack count
+    uint64 overtime = 3;     // Expiry timestamp
+}
+```
+
+### BossDamageInfo (L2940-2973)
+```protobuf
+message BossDamageInfo {
+    uint64 charid = 1;
+    uint64 teamid = 2;
+    string name = 3;
+    string damage = 4;       // String for large damage values
+    uint32 zoneid = 5;
+}
+```
+
+### Additional Stat IDs from Protobuf (attr.AttributeKey)
+
+Cultivation stage percentage bonuses (IDs 7-75):
+
+| ID Range | Name (Pinyin) | Chinese | Purpose |
+|----------|--------------|---------|---------|
+| 7-9 | BASE_HP_MAX/ATK/DEF | | Base stat values |
+| 11-13 | ZHUJI | 筑基 | Foundation stage % |
+| 14-16 | JIEDAN | 结丹 | Pill Formation stage % |
+| 17-19 | YUANYING | 元婴 | Nascent Soul stage % |
+| 20-22 | HUASHEN | 化神 | Transformation stage % |
+| 23-25 | ZHENLING | 真灵 | True Spirit stage % |
+| 26-28 | GONGFA | 功法 | Technique % |
+| 32-34 | FULU | 符箓 | Talisman % |
+| 41-43 | SKILL | | Skill % |
+| 44-46 | FEIJIAN | 飞剑 | Flying Sword % |
+| 47-49 | SKIN | | Outfit % |
+| 50-52 | TREASURE | | Treasure % |
+| 59-61 | *_FIXED | | Fixed ATK/DEF/HP |
+| 66-68 | EQUIP | | Equipment additions |
+| 69-71 | SPIRIT | | Spirit additions |
+| 72-74 | ENHANCEMENT | | Enhancement additions |
+
+Spiritual Energy base IDs:
+
+| ID | Name | Purpose |
+|----|------|---------|
+| 201 | CHARSTATE_BASE_LINGLI | Base spiritual energy |
+| 202 | CHARSTATE_LINGLI_ADD | Spiritual energy addition |
+| 203 | CHARSTATE_LINGLI_FIXED | Fixed spiritual energy |
+
+Career-specific bonuses (IDs 1155-1172): Career 2-4 damage and skill damage modifiers.
 
 ---
 
