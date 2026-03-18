@@ -75,24 +75,29 @@ Your ATK stat minus the defender's DEF, modified by the skill's damage coefficie
 #### Crit Gate (Critical Hit)
 - **Crit Rate** — Your chance to land a critical hit (percentage).
 - **Crit Damage** — How much extra damage a crit does (e.g., +150% means 2.5× normal damage).
+- **Crit Resistance** (HIDDEN) — The defender's stat that reduces your effective Crit Rate.
 - If you crit: damage is multiplied by `(1 + CritDmg%)`.
 - If you don't crit: this multiplier is just 1×.
 
-**In plain terms**: Crit is your "lucky hit" bonus. High crit rate means you land crits often; high crit damage means each crit hits like a truck.
+**In plain terms**: Crit is your "lucky hit" bonus. High crit rate means you land crits often; high crit damage means each crit hits like a truck. But the enemy has **Crit Resistance** that lowers your effective crit chance.
 
 #### Focus Gate
 - **Focus Rate** — Your chance to trigger a "focused" hit.
 - **Focus Damage** — The bonus damage from a focused hit.
+- **Focus Resistance** (HIDDEN) — The defender's stat that reduces your effective Focus Rate.
 - Works just like crit but is a separate roll. You can crit AND focus on the same hit.
 
-**In plain terms**: Focus is a second crit-like system. It's another dice roll that can multiply your damage on top of crit. Having both crit and focus means you have two chances to get bonus damage every attack.
+**In plain terms**: Focus is a second crit-like system. It's another dice roll that can multiply your damage on top of crit. The enemy's Focus Resistance fights back against your Focus Rate.
 
 #### Break Gate
 - **Break Rate** — Your chance to "break" the enemy's defense.
 - **Break Damage** — The extra damage when you break through.
+- **Break Resistance** (HIDDEN) — The defender's stat that reduces your effective Break Rate.
 - Again, this is a separate roll from crit and focus.
 
 **In plain terms**: Break is a third multiplier layer. When all three gates (crit + focus + break) trigger on the same hit, your damage is enormous. This is why late-game players stack all three rates.
+
+> **CODE-VERIFIED**: The game's protobuf protocol confirms that Crit, Focus, and Break are **independent boolean flags** on each attack. All three CAN trigger simultaneously on a single hit. Each gate also has a **hidden resistance counter stat** (IDs 18-20) that most community guides don't document.
 
 #### GDB and GDR (Global Damage Bonus vs. Global Damage Reduction)
 ```
@@ -137,20 +142,27 @@ Here's every major stat and what it actually does for your character.
 |------|-------------|----------------|
 | **HP (Health Points)** | Total health pool | How much damage you can take before dying. |
 | **DEF (Defense)** | Reduces incoming base damage | Your armor — reduces the raw damage number before multipliers. |
-| **GDR (Global Damage Reduction)** | Flat % reduction on all incoming damage | An always-on damage shield. The best defensive stat. |
+| **GDR (Global Damage Reduction)** | Flat % reduction on all incoming damage | An always-on damage shield. The best defensive stat. Code name: `dmgReduce` (ID 17). |
 | **MIT (Damage Mitigation)** | Reduces all incoming damage by a % for a duration | A timed defensive buff (e.g., Rivergleam spirit gives +4% MIT for 10s). |
-| **Evasion/Dodge** | Chance (%) to completely avoid an attack | Sometimes you dodge entirely and take zero damage. |
-| **Block** | Chance (%) to block and reduce damage | Partial damage reduction on block (less than dodge, more reliable). |
-| **Resistance** | Reduces effects of debuffs and status effects | Helps you resist crowd control and negative effects. |
+| **Evasion/Dodge** | Chance (%) to completely avoid an attack | Sometimes you dodge entirely and take zero damage. Code name: `dodgeRate` (ID 12). |
+| **Block Rate** | Chance (%) to block and reduce damage | Partial damage reduction on block. Code name: `blockRate` (ID 14). |
+| **Block Damage** | Amount of damage reduced on block | How much a block absorbs. Code name: `blockDmg` (ID 15). |
+| **Toughness** | Unknown defensive function | **Undocumented stat (ID 24)**. Possibly reduces CC duration or sustained damage. |
+| **Crit Resistance** | Reduces enemy's effective Crit Rate | **HIDDEN STAT (ID 18)** — Directly counters enemy crit chance. Not in most guides! |
+| **Focus Resistance** | Reduces enemy's effective Focus Rate | **HIDDEN STAT (ID 19)** — Directly counters enemy focus chance. Not in most guides! |
+| **Break Resistance** | Reduces enemy's effective Break Rate | **HIDDEN STAT (ID 20)** — Directly counters enemy break chance. Not in most guides! |
 
 ### Utility Stats
 
 | Stat | What It Does | Plain Language |
 |------|-------------|----------------|
-| **Speed** | Reduces cast time and GCD (global cooldown) | How fast your character attacks. More speed = more attacks per second. |
+| **Speed** | Reduces cast time and GCD (global cooldown) | How fast your character attacks. More speed = more attacks per second. Code name: `speed` (ID 5). |
 | **Cooldown Reduction (CDR)** | Reduces skill cooldowns by a % | Skills come back faster. Goldstride mount gives 14% CDR. |
-| **Accuracy** | Counters enemy evasion | Makes your attacks more likely to land against dodgy opponents. |
-| **Energy** | Resource used to cast skills | You spend energy on skills and regenerate it through basic attacks. |
+| **Accuracy/Hit Rate** | Counters enemy evasion | Makes your attacks more likely to land. Code name: `hitRate` (ID 13). |
+| **Energy** | Resource used to cast skills | You spend energy on skills. Code names: `energy` (ID 21), `energyMax` (ID 22). |
+| **Penetration** | Ignores a portion of enemy DEF | Punches through tanky opponents. Code name: `penetration` (ID 23). |
+| **Healing Bonus** | Increases healing done | **HIDDEN STAT (ID 25)** — Makes your heals stronger. |
+| **Healing Received** | Increases healing received | **HIDDEN STAT (ID 26)** — Makes heals on you more effective. |
 | **Core Skill DMG** | Bonus damage % specifically for your Core Skill | Makes your signature ability hit harder. |
 | **Skill DMG** | Bonus damage % for all skills | A general multiplier for all skill-based damage. |
 | **Global DMG** | Universal damage multiplier from external sources | An always-on boost from mounts, gear, etc. (e.g., Jadesky mount: +45% Global DMG at 70%+ HP). |
@@ -159,8 +171,9 @@ Here's every major stat and what it actually does for your character.
 
 | Stat | What It Does | Plain Language |
 |------|-------------|----------------|
-| **Combat Power (CP)** | Summary number combining all stats | A rough "power level" indicator. Higher = generally stronger. |
-| **DILI** | Damage-In / Damage-Out ratio (internal) | An internal calculation the game uses for matchup balance. |
+| **Combat Power (CP)** | Server-computed weighted sum of all stats | A rough "power level" indicator. Each stat has a different CP weight. |
+
+> **Code-verified note**: All stats are stored as **int64 basis points** (10000 = 100%). Stats are layered: Base (from level/class) + Equipment + Buffs = Total. The server computes the totals.
 
 ---
 
