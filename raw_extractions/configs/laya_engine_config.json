@@ -1,0 +1,81 @@
+{
+  "resolution": {
+    "designWidth": 720,
+    "designHeight": 1584,
+    "scaleMode": "fixedauto",
+    "alignH": "center",
+    "screenMode": "vertical",
+    "backgroundColor": "rgba(0, 0, 0, 1)",
+    "alignV": "top"
+  },
+  "2D": {
+    "defaultFont": "MicrosoftYaHei",
+    "defaultFontSize": 24,
+    "FPS": 40,
+    "isAntialias": true,
+    "useRetinalCanvas": false,
+    "isAlpha": false,
+    "webGL2D_MeshAllocMaxMem": true
+  },
+  "physics3dModule": "custom",
+  "physics3dModuleCustom": "libs/Cannon/laya.cannon.js",
+  "splash": {
+    "enabled": false,
+    "image": "",
+    "fit": "center",
+    "duration": 1
+  },
+  "3D": {
+    "enableDynamicBatch": true,
+    "defaultPhysicsMemory": 16,
+    "enableUniformBufferObject": true,
+    "pixelRatio": 1,
+    "enableMultiLight": true,
+    "maxLightCount": 32,
+    "lightClusterCount": {
+      "x": 12,
+      "y": 12,
+      "z": 12
+    },
+    "maxMorphTargetCount": 32
+  },
+  "physics2D": {
+    "allowSleeping": true,
+    "gravity": {
+      "x": 0,
+      "y": 9.8
+    },
+    "velocityIterations": 8,
+    "positionIterations": 3,
+    "pixelRatio": 50,
+    "debugDraw": false,
+    "drawShape": true,
+    "drawJoint": true,
+    "drawAABB": false,
+    "drawCenterOfMass": false
+  },
+  "physics3D": {
+    "fixedTimeStep": 0.016666666666666666,
+    "maxSubSteps": 1,
+    "enableCCD": false,
+    "ccdThreshold": 0.0001,
+    "ccdSphereRadius": 0.0001
+  },
+  "physics2dModule": "laya.box2D",
+  "spineVersion": "3.8",
+  "stat": false,
+  "vConsole": false,
+  "alertGlobalError": false,
+  "startupScene": "Scene/GameScene.ls",
+  "pkgs": [
+    {
+      "path": "",
+      "hash": "ab68e"
+    },
+    {
+      "path": "resourcesLib",
+      "hash": "c25f6",
+      "remoteUrl": "https://sydh-cdnres.joyagegames.com/EN/stable/mix_wx_pangu/common/"
+    }
+  ]
+}

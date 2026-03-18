@@ -1,0 +1,85 @@
+{
+  "sydh-us-cdnres.joynetgame.com": [
+    "https://sydh-us-cdnres.joynetgame.com/US/stable/mix_wx_pangu/20240724_web/",
+    "https://sydh-us-cdnres.joynetgame.com/cdnconfig_"
+  ],
+  "apiapm.ssgamescenter.com": [
+    "https://apiapm.ssgamescenter.com/api/v2/ip/query"
+  ],
+  "chat-api.4399sy.com": [
+    "https://chat-api.4399sy.com/api/wx/add_wx"
+  ],
+  "chat.zhf19.com": [
+    "https://chat.zhf19.com/pages/cancellation/index?_id=17&_sessionId=&_messageId=&_source=fromMenu&tu=e7bGh39G"
+  ],
+  "www.tiktok.com": [
+    "https://www.tiktok.com/@legend.of.element?_t=ZS-8zAKO3eZuLA&_r=1"
+  ],
+  "x.com": [
+    "https://x.com/legendofelement"
+  ],
+  "www.youtube.com": [
+    "https://www.youtube.com/@LegendofElementsOfficial"
+  ],
+  "www.facebook.com": [
+    "https://www.facebook.com/legendofelement/"
+  ],
+  "vk.com": [
+    "https://vk.com/legendofelements"
+  ],
+  "discord.gg": [
+    "https://discord.gg/SfCyzJ3pkr"
+  ],
+  "sy-cdnres.unionsy.com": [
+    "https://sy-cdnres.unionsy.com/platform/content/sypt/images/zzsj/zzbanner4.jpg"
+  ],
+  "172.18.50.89": [
+    "http://172.18.50.89//release/web-remote/resourcesLib/UIBigImg/HeadIcon/icon_qingtongtouxiang-6dd6e.png"
+  ],
+  "172.16.12.193": [
+    "http://172.16.12.193/",
+    "http://172.16.12.193/monica_zonelist.json"
+  ],
+  "in-sydh-us-cdnres.joynetgame.com": [
+    "https://in-sydh-us-cdnres.joynetgame.com"
+  ],
+  "in-": [
+    "https://in-"
+  ],
+  "172.16.12.193:24000": [
+    "ws://172.16.12.193:24000"
+  ],
+  "mmocgame.qpic.cn": [
+    "https://mmocgame.qpic.cn/wechatgame/QhsydJic75GJIwbwd6Br2WicaRSTJeZgcQIFOdrE8Nt5PYUsHWgmnVDVVw5190ZQSY/0"
+  ],
+  "fnsdk.aiysm.com": [
+    "https://fnsdk.aiysm.com/zzsjwxxyxgnml/4399wx/pay.php",
+    "https://fnsdk.aiysm.com/zzsjwxgnmlios/4399wx_ios/pay.php",
+    "https://fnsdk.aiysm.com/zzsjdyxyxgnml/4399dy/pay.php",
+    "https://fnsdk.aiysm.com/zzsjdygnmlios/4399dy_ios/pay.php",
+    "https://fnsdk.aiysm.com/zzsjoppokyxfx/oppo_rpk/pay.php",
+    "https://fnsdk.aiysm.com/zzsjvivokyxfx/vivo_rpk/pay.php",
+    "https://fnsdk.aiysm.com/zzsjzfbxyxfx/4399zfb/pay.php",
+    "https://fnsdk.aiysm.com/zzsjzfbxyxiosfxios/4399zfbios/pay.php",
+    "https://fnsdk.aiysm.com/zzsjksxyxgnml/4399ks/pay.php",
+    "https://fnsdk.aiysm.com/zzsjksxyxiosgnmlios/4399ks_ios/pay.php"
+  ],
+  "y.qq499.com": [
+    "https://y.qq499.com/datacf/api/push"
+  ],
+  "mkt.qq499.com": [
+    "https://mkt.qq499.com/api/wxxyx-attr/channelinfo"
+  ],
+  "y2.4399data.com": [
+    "https://y2.4399data.com/datacf/api/push"
+  ],
+  "fnsdk.4399sy.com": [
+    "https://fnsdk.4399sy.com/zzsjhwkyxfx/huawei_h5/pay.php"
+  ],
+  "beian.miit.gov.cn": [
+    "https://beian.miit.gov.cn/"
+  ],
+  "apiapm.joynetgame.com": [
+    "https://apiapm.joynetgame.com/api/apm/19258715e23f80911"
+  ]
+}
