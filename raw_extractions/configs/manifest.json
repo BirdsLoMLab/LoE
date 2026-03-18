@@ -1,0 +1,24 @@
+{
+  
+  "background_color": "white",
+  
+  "description": "Legend of Elements",
+  
+  "display": "fullscreen",
+  
+  
+  "icons": [
+    {
+      "src": "pwa-icon240.png", 
+      "sizes": "240x240",
+      "type": "image/png"
+    }
+  ],
+  
+  "name": "Legend of Elements", 
+  
+  "short_name": "Legend of Elements",
+  
+  
+  "start_url": "https://elementsh5.joynetgame.com/"
+}

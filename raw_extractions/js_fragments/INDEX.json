@@ -1,0 +1,2510 @@
+[
+  {
+    "filename": "formula_for_L101.js",
+    "start_line": 101,
+    "end_line": 301,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "Math.floor",
+      "Math.round"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "formula_L442.js",
+    "start_line": 442,
+    "end_line": 543,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.floor"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_t_L806.js",
+    "start_line": 806,
+    "end_line": 974,
+    "categories": [
+      "Formula",
+      "Server/API"
+    ],
+    "keywords": [
+      "Math.min",
+      "proto"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "stat_system_for_L8659.js",
+    "start_line": 8659,
+    "end_line": 8773,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L8874.js",
+    "start_line": 8874,
+    "end_line": 9074,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy",
+      "hp"
+    ],
+    "num_hit_lines": 9
+  },
+  {
+    "filename": "stat_system_for_L9337.js",
+    "start_line": 9337,
+    "end_line": 9445,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "equipment_t_L11106.js",
+    "start_line": 11106,
+    "end_line": 11306,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "equip"
+    ],
+    "num_hit_lines": 17
+  },
+  {
+    "filename": "equipment_for_L11319.js",
+    "start_line": 11319,
+    "end_line": 11519,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "equip"
+    ],
+    "num_hit_lines": 13
+  },
+  {
+    "filename": "stat_system_for_L14328.js",
+    "start_line": 14328,
+    "end_line": 14441,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L21831.js",
+    "start_line": 21831,
+    "end_line": 21960,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L23264.js",
+    "start_line": 23264,
+    "end_line": 23387,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L24531.js",
+    "start_line": 24531,
+    "end_line": 24731,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "speed"
+    ],
+    "num_hit_lines": 9
+  },
+  {
+    "filename": "server_api_t_L26673.js",
+    "start_line": 26673,
+    "end_line": 26873,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "login",
+      "token"
+    ],
+    "num_hit_lines": 17
+  },
+  {
+    "filename": "server_api_t_L26890.js",
+    "start_line": 26890,
+    "end_line": 27090,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "login"
+    ],
+    "num_hit_lines": 15
+  },
+  {
+    "filename": "server_api_for_L27109.js",
+    "start_line": 27109,
+    "end_line": 27209,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "login"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_for_L27266.js",
+    "start_line": 27266,
+    "end_line": 27385,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "server_api_for_L27420.js",
+    "start_line": 27420,
+    "end_line": 27528,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L31534.js",
+    "start_line": 31534,
+    "end_line": 31661,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L32079.js",
+    "start_line": 32079,
+    "end_line": 32211,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L32416.js",
+    "start_line": 32416,
+    "end_line": 32527,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L32657.js",
+    "start_line": 32657,
+    "end_line": 32846,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block",
+      "dodge",
+      "speed"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "equipment_for_L37920.js",
+    "start_line": 37920,
+    "end_line": 38110,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 6
+  },
+  {
+    "filename": "equipment_t_L38791.js",
+    "start_line": 38791,
+    "end_line": 38893,
+    "categories": [
+      "Equipment",
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "pet",
+      "relic"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_for_L40072.js",
+    "start_line": 40072,
+    "end_line": 40195,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 6
+  },
+  {
+    "filename": "equipment_t_L41037.js",
+    "start_line": 41037,
+    "end_line": 41139,
+    "categories": [
+      "Equipment",
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "relic",
+      "spirit"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "equipment_t_L41492.js",
+    "start_line": 41492,
+    "end_line": 41594,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "relic"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "spirits_pets_t_L45363.js",
+    "start_line": 45363,
+    "end_line": 45563,
+    "categories": [
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "pet"
+    ],
+    "num_hit_lines": 20
+  },
+  {
+    "filename": "spirits_pets_t_L45580.js",
+    "start_line": 45580,
+    "end_line": 45780,
+    "categories": [
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "pet"
+    ],
+    "num_hit_lines": 9
+  },
+  {
+    "filename": "equipment_for_L50987.js",
+    "start_line": 50987,
+    "end_line": 51093,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L53699.js",
+    "start_line": 53699,
+    "end_line": 53816,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "speed"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "equipment_t_L57929.js",
+    "start_line": 57929,
+    "end_line": 58129,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "relic"
+    ],
+    "num_hit_lines": 13
+  },
+  {
+    "filename": "stat_system_for_L61562.js",
+    "start_line": 61562,
+    "end_line": 61670,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L61950.js",
+    "start_line": 61950,
+    "end_line": 62056,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L62462.js",
+    "start_line": 62462,
+    "end_line": 62570,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L66772.js",
+    "start_line": 66772,
+    "end_line": 66906,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L67164.js",
+    "start_line": 67164,
+    "end_line": 67278,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "hp"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "progression_for_L69114.js",
+    "start_line": 69114,
+    "end_line": 69222,
+    "categories": [
+      "Progression"
+    ],
+    "keywords": [
+      "master"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L72747.js",
+    "start_line": 72747,
+    "end_line": 72855,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "equipment_for_L73114.js",
+    "start_line": 73114,
+    "end_line": 73228,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "spirits_pets_t_L74925.js",
+    "start_line": 74925,
+    "end_line": 75125,
+    "categories": [
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "spirit"
+    ],
+    "num_hit_lines": 13
+  },
+  {
+    "filename": "spirits_pets_for_L75147.js",
+    "start_line": 75147,
+    "end_line": 75347,
+    "categories": [
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "spirit"
+    ],
+    "num_hit_lines": 14
+  },
+  {
+    "filename": "spirits_pets_for_L75364.js",
+    "start_line": 75364,
+    "end_line": 75470,
+    "categories": [
+      "Spirits/Pets"
+    ],
+    "keywords": [
+      "spirit"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "equipment_for_L86389.js",
+    "start_line": 86389,
+    "end_line": 86503,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L92239.js",
+    "start_line": 92239,
+    "end_line": 92373,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "equipment_for_L94800.js",
+    "start_line": 94800,
+    "end_line": 94925,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "equipment_for_L102258.js",
+    "start_line": 102258,
+    "end_line": 102432,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 6
+  },
+  {
+    "filename": "equipment_for_L102724.js",
+    "start_line": 102724,
+    "end_line": 102835,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L108935.js",
+    "start_line": 108935,
+    "end_line": 109097,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack",
+      "energy"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "equipment_for_L112335.js",
+    "start_line": 112335,
+    "end_line": 112455,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "quality"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L116033.js",
+    "start_line": 116033,
+    "end_line": 116147,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_for_L116223.js",
+    "start_line": 116223,
+    "end_line": 116415,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "stat_system_t_L116438.js",
+    "start_line": 116438,
+    "end_line": 116538,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "energy"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_for_L122746.js",
+    "start_line": 122746,
+    "end_line": 122899,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "server_api_BaseConfig_L123445.js",
+    "start_line": 123445,
+    "end_line": 123546,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_i_L123685.js",
+    "start_line": 123685,
+    "end_line": 123885,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "Math.floor"
+    ],
+    "num_hit_lines": 14
+  },
+  {
+    "filename": "formula_e_L123916.js",
+    "start_line": 123916,
+    "end_line": 124054,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "Math.floor"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "formula_s_L124065.js",
+    "start_line": 124065,
+    "end_line": 124265,
+    "categories": [
+      "Formula",
+      "Server/API"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min",
+      "http",
+      "joynetgame",
+      "token",
+      "websocket"
+    ],
+    "num_hit_lines": 10
+  },
+  {
+    "filename": "server_api_L124281.js",
+    "start_line": 124281,
+    "end_line": 124481,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "api",
+      "socket",
+      "token",
+      "websocket"
+    ],
+    "num_hit_lines": 17
+  },
+  {
+    "filename": "formula_r_L124890.js",
+    "start_line": 124890,
+    "end_line": 124991,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.floor"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_n_L125089.js",
+    "start_line": 125089,
+    "end_line": 125195,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula__NumericType_L127017.js",
+    "start_line": 127017,
+    "end_line": 127210,
+    "categories": [
+      "Formula",
+      "Stat System"
+    ],
+    "keywords": [
+      "DILI",
+      "Math.max",
+      "Math.min",
+      "dodge",
+      "speed"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "stat_system_setData_L127253.js",
+    "start_line": 127253,
+    "end_line": 127357,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "speed"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_i_L128081.js",
+    "start_line": 128081,
+    "end_line": 128214,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_i_L128405.js",
+    "start_line": 128405,
+    "end_line": 128506,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_e_L128912.js",
+    "start_line": 128912,
+    "end_line": 129014,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.min"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_super_L129218.js",
+    "start_line": 129218,
+    "end_line": 129414,
+    "categories": [
+      "Economy",
+      "Stat System"
+    ],
+    "keywords": [
+      "gold",
+      "speed"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "economy_C_L129473.js",
+    "start_line": 129473,
+    "end_line": 129600,
+    "categories": [
+      "Economy",
+      "Equipment"
+    ],
+    "keywords": [
+      "gold",
+      "mount"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "class_system_Cfgmartial_level_L129734.js",
+    "start_line": 129734,
+    "end_line": 129835,
+    "categories": [
+      "Class System"
+    ],
+    "keywords": [
+      "fire",
+      "thunder",
+      "wind"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_e_L130452.js",
+    "start_line": 130452,
+    "end_line": 130553,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_for_L130859.js",
+    "start_line": 130859,
+    "end_line": 130970,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_o_L131161.js",
+    "start_line": 131161,
+    "end_line": 131262,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "Math.min"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "gacha_draw_e_L132372.js",
+    "start_line": 132372,
+    "end_line": 132473,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_t_L132850.js",
+    "start_line": 132850,
+    "end_line": 132953,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_i_L133418.js",
+    "start_line": 133418,
+    "end_line": 133527,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_i_L135275.js",
+    "start_line": 135275,
+    "end_line": 135377,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.min"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_e_L135598.js",
+    "start_line": 135598,
+    "end_line": 135793,
+    "categories": [
+      "Formula",
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "Math.round",
+      "draw"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_l_L135840.js",
+    "start_line": 135840,
+    "end_line": 135960,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.min",
+      "Math.round"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_t_L137101.js",
+    "start_line": 137101,
+    "end_line": 137301,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "formula__addNum_L139390.js",
+    "start_line": 139390,
+    "end_line": 139494,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_for_L140206.js",
+    "start_line": 140206,
+    "end_line": 140306,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_e_L140955.js",
+    "start_line": 140955,
+    "end_line": 141056,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_o_L141144.js",
+    "start_line": 141144,
+    "end_line": 141287,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "formula_for_L141301.js",
+    "start_line": 141301,
+    "end_line": 141413,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.min"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_onShow_L141443.js",
+    "start_line": 141443,
+    "end_line": 141643,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "server_api_s_L142156.js",
+    "start_line": 142156,
+    "end_line": 142279,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "api"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "economy_onInit_L143765.js",
+    "start_line": 143765,
+    "end_line": 143869,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_doShow_L144347.js",
+    "start_line": 144347,
+    "end_line": 144448,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.min"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_r_L144693.js",
+    "start_line": 144693,
+    "end_line": 144858,
+    "categories": [
+      "Formula",
+      "Stat System"
+    ],
+    "keywords": [
+      "Math.max",
+      "Math.min",
+      "speed"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "formula_e_L148484.js",
+    "start_line": 148484,
+    "end_line": 148586,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_onShow_L150286.js",
+    "start_line": 150286,
+    "end_line": 150388,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_onInit_L150625.js",
+    "start_line": 150625,
+    "end_line": 150739,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "stat_system_c_L154886.js",
+    "start_line": 154886,
+    "end_line": 155086,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "speed"
+    ],
+    "num_hit_lines": 8
+  },
+  {
+    "filename": "stat_system_u_L155226.js",
+    "start_line": 155226,
+    "end_line": 155329,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "speed"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_r_L155412.js",
+    "start_line": 155412,
+    "end_line": 155512,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "speed"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_t_L158757.js",
+    "start_line": 158757,
+    "end_line": 158858,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "diamond"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_s_L161614.js",
+    "start_line": 161614,
+    "end_line": 161715,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_i_L161992.js",
+    "start_line": 161992,
+    "end_line": 162092,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_onInit_L162317.js",
+    "start_line": 162317,
+    "end_line": 162421,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "formula_t_L162828.js",
+    "start_line": 162828,
+    "end_line": 162928,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_t_L163439.js",
+    "start_line": 163439,
+    "end_line": 163625,
+    "categories": [
+      "Formula",
+      "Skill System"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "skill_id"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "class_system_for_L163929.js",
+    "start_line": 163929,
+    "end_line": 164068,
+    "categories": [
+      "Class System"
+    ],
+    "keywords": [
+      "element_type"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "class_system_L164206.js",
+    "start_line": 164206,
+    "end_line": 164307,
+    "categories": [
+      "Class System",
+      "Skill System"
+    ],
+    "keywords": [
+      "element_type",
+      "skill_id"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "skill_system_t_L164478.js",
+    "start_line": 164478,
+    "end_line": 164578,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "class_system_t_L164850.js",
+    "start_line": 164850,
+    "end_line": 164972,
+    "categories": [
+      "Class System"
+    ],
+    "keywords": [
+      "element_type"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "economy_onInit_L165633.js",
+    "start_line": 165633,
+    "end_line": 165833,
+    "categories": [
+      "Economy",
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "gold"
+    ],
+    "num_hit_lines": 7
+  },
+  {
+    "filename": "formula_onItemRender_L166177.js",
+    "start_line": 166177,
+    "end_line": 166353,
+    "categories": [
+      "Formula",
+      "Stat System"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "attack"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "stat_system_onItemRender_L166411.js",
+    "start_line": 166411,
+    "end_line": 166512,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_t_L166913.js",
+    "start_line": 166913,
+    "end_line": 167064,
+    "categories": [
+      "Formula",
+      "Stat System"
+    ],
+    "keywords": [
+      "Math.ceil",
+      "attack"
+    ],
+    "num_hit_lines": 7
+  },
+  {
+    "filename": "formula_i_L169399.js",
+    "start_line": 169399,
+    "end_line": 169499,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.ceil"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_Gold_L170820.js",
+    "start_line": 170820,
+    "end_line": 170920,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_onInit_L170938.js",
+    "start_line": 170938,
+    "end_line": 171133,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "economy_onInit_L171392.js",
+    "start_line": 171392,
+    "end_line": 171566,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "skill_system_o_L171718.js",
+    "start_line": 171718,
+    "end_line": 171820,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_onInit_L173676.js",
+    "start_line": 173676,
+    "end_line": 173780,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "stat_system_t_L180657.js",
+    "start_line": 180657,
+    "end_line": 180817,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "economy_onInit_L190553.js",
+    "start_line": 190553,
+    "end_line": 190657,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "gold"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "economy_onInit_L190672.js",
+    "start_line": 190672,
+    "end_line": 190848,
+    "categories": [
+      "Economy",
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw",
+      "gold"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "gacha_draw_t_L195984.js",
+    "start_line": 195984,
+    "end_line": 196116,
+    "categories": [
+      "Gacha/Draw",
+      "Stat System"
+    ],
+    "keywords": [
+      "attack",
+      "banner"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "gacha_draw_t_L196252.js",
+    "start_line": 196252,
+    "end_line": 196353,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_t_L197236.js",
+    "start_line": 197236,
+    "end_line": 197337,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "server_api_o_L206093.js",
+    "start_line": 206093,
+    "end_line": 206194,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_s_L213092.js",
+    "start_line": 213092,
+    "end_line": 213193,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_t_L218718.js",
+    "start_line": 218718,
+    "end_line": 218819,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_t_L218880.js",
+    "start_line": 218880,
+    "end_line": 218982,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_a_L224050.js",
+    "start_line": 224050,
+    "end_line": 224151,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_s_L224277.js",
+    "start_line": 224277,
+    "end_line": 224377,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "probability"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_t_L229870.js",
+    "start_line": 229870,
+    "end_line": 229970,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "progression_setSeptMasterInfo_L244213.js",
+    "start_line": 244213,
+    "end_line": 244314,
+    "categories": [
+      "Progression"
+    ],
+    "keywords": [
+      "master"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_for_L252659.js",
+    "start_line": 252659,
+    "end_line": 252762,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.round"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "equipment_registS2CHandler_L253468.js",
+    "start_line": 253468,
+    "end_line": 253608,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "relic"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "skill_system_e_L257086.js",
+    "start_line": 257086,
+    "end_line": 257252,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "equipment_o_L257694.js",
+    "start_line": 257694,
+    "end_line": 257797,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "mount"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_constructor_L260847.js",
+    "start_line": 260847,
+    "end_line": 260965,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "attack"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "server_api_for_L265878.js",
+    "start_line": 265878,
+    "end_line": 265979,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "api"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_s_L276069.js",
+    "start_line": 276069,
+    "end_line": 276225,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "gacha_draw_SetBossInfo_L277035.js",
+    "start_line": 277035,
+    "end_line": 277136,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_onShow_L277750.js",
+    "start_line": 277750,
+    "end_line": 277858,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "recruit"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "class_system_s_L283287.js",
+    "start_line": 283287,
+    "end_line": 283479,
+    "categories": [
+      "Class System",
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner",
+      "element_type"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "class_system_onConstruct_L285060.js",
+    "start_line": 285060,
+    "end_line": 285248,
+    "categories": [
+      "Class System"
+    ],
+    "keywords": [
+      "thunder"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "gacha_draw_onClickAll_L287417.js",
+    "start_line": 287417,
+    "end_line": 287518,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "economy_t_L290042.js",
+    "start_line": 290042,
+    "end_line": 290143,
+    "categories": [
+      "Economy"
+    ],
+    "keywords": [
+      "diamond"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_reset_L290947.js",
+    "start_line": 290947,
+    "end_line": 291147,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "socket",
+      "websocket"
+    ],
+    "num_hit_lines": 12
+  },
+  {
+    "filename": "skill_system_t_L291791.js",
+    "start_line": 291791,
+    "end_line": 291891,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_super_L296376.js",
+    "start_line": 296376,
+    "end_line": 296559,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "gacha_draw_super_L296732.js",
+    "start_line": 296732,
+    "end_line": 296932,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw"
+    ],
+    "num_hit_lines": 9
+  },
+  {
+    "filename": "gacha_draw__onItemProvider_L296973.js",
+    "start_line": 296973,
+    "end_line": 297127,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "gacha_draw_super_L297229.js",
+    "start_line": 297229,
+    "end_line": 297429,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw"
+    ],
+    "num_hit_lines": 6
+  },
+  {
+    "filename": "gacha_draw_t_L329690.js",
+    "start_line": 329690,
+    "end_line": 329794,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "wish"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_s_L334132.js",
+    "start_line": 334132,
+    "end_line": 334289,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "gacha_draw_onInit_L335170.js",
+    "start_line": 335170,
+    "end_line": 335274,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "summon"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_i_L336252.js",
+    "start_line": 336252,
+    "end_line": 336368,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "gacha_draw_e_L336793.js",
+    "start_line": 336793,
+    "end_line": 336895,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_t_L337132.js",
+    "start_line": 337132,
+    "end_line": 337233,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http",
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "class_system_super_L338564.js",
+    "start_line": 338564,
+    "end_line": 338703,
+    "categories": [
+      "Class System"
+    ],
+    "keywords": [
+      "thunder"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "equipment_super_L346651.js",
+    "start_line": 346651,
+    "end_line": 346851,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "mount"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "equipment_super_L346933.js",
+    "start_line": 346933,
+    "end_line": 347133,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "mount"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "equipment_super_L347185.js",
+    "start_line": 347185,
+    "end_line": 347285,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "mount"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "equipment_super_L347521.js",
+    "start_line": 347521,
+    "end_line": 347721,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "mount"
+    ],
+    "num_hit_lines": 12
+  },
+  {
+    "filename": "equipment_super_L347744.js",
+    "start_line": 347744,
+    "end_line": 347940,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "mount"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "skill_system_onConstruct_L358477.js",
+    "start_line": 358477,
+    "end_line": 358594,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_level"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "server_api_t_L358813.js",
+    "start_line": 358813,
+    "end_line": 358914,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http",
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "skill_system_t_L361589.js",
+    "start_line": 361589,
+    "end_line": 361693,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "skill_system_t_L362214.js",
+    "start_line": 362214,
+    "end_line": 362314,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_t_L364356.js",
+    "start_line": 364356,
+    "end_line": 364456,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_i_L364581.js",
+    "start_line": 364581,
+    "end_line": 364682,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_i_L364917.js",
+    "start_line": 364917,
+    "end_line": 365117,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "joynetgame"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "equipment_i_L370359.js",
+    "start_line": 370359,
+    "end_line": 370459,
+    "categories": [
+      "Equipment"
+    ],
+    "keywords": [
+      "relic"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_t_L371150.js",
+    "start_line": 371150,
+    "end_line": 371253,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_s_L382119.js",
+    "start_line": 382119,
+    "end_line": 382220,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_onConstruct_L385489.js",
+    "start_line": 385489,
+    "end_line": 385593,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_super_L385990.js",
+    "start_line": 385990,
+    "end_line": 386182,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "wish"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "gacha_draw_super_L386327.js",
+    "start_line": 386327,
+    "end_line": 386527,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "wish"
+    ],
+    "num_hit_lines": 7
+  },
+  {
+    "filename": "gacha_draw_super_L386546.js",
+    "start_line": 386546,
+    "end_line": 386746,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "wish"
+    ],
+    "num_hit_lines": 7
+  },
+  {
+    "filename": "gacha_draw_refreshSkin_L391542.js",
+    "start_line": 391542,
+    "end_line": 391643,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "banner"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_e_L399637.js",
+    "start_line": 399637,
+    "end_line": 399738,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "probability"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "class_system_l_L401771.js",
+    "start_line": 401771,
+    "end_line": 401878,
+    "categories": [
+      "Class System",
+      "Skill System"
+    ],
+    "keywords": [
+      "element_type",
+      "skill_id"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "class_system_s_L402185.js",
+    "start_line": 402185,
+    "end_line": 402290,
+    "categories": [
+      "Class System",
+      "Skill System"
+    ],
+    "keywords": [
+      "element_type",
+      "skill_id"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "gacha_draw_onInit_L403403.js",
+    "start_line": 403403,
+    "end_line": 403603,
+    "categories": [
+      "Gacha/Draw",
+      "Server/API"
+    ],
+    "keywords": [
+      "banner",
+      "http",
+      "joynetgame"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "server_api_super_L405253.js",
+    "start_line": 405253,
+    "end_line": 405353,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "joynetgame"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "equipment_initCom_L405505.js",
+    "start_line": 405505,
+    "end_line": 405609,
+    "categories": [
+      "Equipment",
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "draw",
+      "mount",
+      "wish"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "server_api_connect_L406821.js",
+    "start_line": 406821,
+    "end_line": 406922,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "websocket"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_i_L408312.js",
+    "start_line": 408312,
+    "end_line": 408412,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_i_L408618.js",
+    "start_line": 408618,
+    "end_line": 408725,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "stat_system_l_L409407.js",
+    "start_line": 409407,
+    "end_line": 409508,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_DestructuringErrors_L409550.js",
+    "start_line": 409550,
+    "end_line": 409651,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_e_L409725.js",
+    "start_line": 409725,
+    "end_line": 409825,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_n_L409999.js",
+    "start_line": 409999,
+    "end_line": 410100,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_TokContext_L410123.js",
+    "start_line": 410123,
+    "end_line": 410310,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "proto",
+      "token"
+    ],
+    "num_hit_lines": 5
+  },
+  {
+    "filename": "stat_system_s_L410482.js",
+    "start_line": 410482,
+    "end_line": 410682,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "server_api_Token_L411262.js",
+    "start_line": 411262,
+    "end_line": 411375,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "token"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "stat_system_L411718.js",
+    "start_line": 411718,
+    "end_line": 411818,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_i_L411850.js",
+    "start_line": 411850,
+    "end_line": 411951,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "block"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_setData_L413365.js",
+    "start_line": 413365,
+    "end_line": 413466,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "probability"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "stat_system_O_L413500.js",
+    "start_line": 413500,
+    "end_line": 413622,
+    "categories": [
+      "Stat System"
+    ],
+    "keywords": [
+      "DILI",
+      "block",
+      "dodge"
+    ],
+    "num_hit_lines": 6
+  },
+  {
+    "filename": "skill_system_t_L414575.js",
+    "start_line": 414575,
+    "end_line": 414685,
+    "categories": [
+      "Skill System"
+    ],
+    "keywords": [
+      "skill_id"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "gacha_draw_for_L416770.js",
+    "start_line": 416770,
+    "end_line": 416870,
+    "categories": [
+      "Gacha/Draw"
+    ],
+    "keywords": [
+      "probability"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "formula_i_L418374.js",
+    "start_line": 418374,
+    "end_line": 418474,
+    "categories": [
+      "Formula"
+    ],
+    "keywords": [
+      "Math.round"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_i_L422686.js",
+    "start_line": 422686,
+    "end_line": 422794,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "http",
+      "joynetgame"
+    ],
+    "num_hit_lines": 3
+  },
+  {
+    "filename": "server_api_i_L423034.js",
+    "start_line": 423034,
+    "end_line": 423139,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "ws://"
+    ],
+    "num_hit_lines": 1
+  },
+  {
+    "filename": "server_api_L423404.js",
+    "start_line": 423404,
+    "end_line": 423530,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "api",
+      "joynetgame"
+    ],
+    "num_hit_lines": 4
+  },
+  {
+    "filename": "server_api_e_L424394.js",
+    "start_line": 424394,
+    "end_line": 424495,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "ws://",
+      "wss://"
+    ],
+    "num_hit_lines": 2
+  },
+  {
+    "filename": "server_api_e_L424807.js",
+    "start_line": 424807,
+    "end_line": 424995,
+    "categories": [
+      "Server/API"
+    ],
+    "keywords": [
+      "api",
+      "http",
+      "joynetgame"
+    ],
+    "num_hit_lines": 6
+  }
+]
