@@ -486,6 +486,63 @@ Career-specific bonuses (IDs 1155-1172): Career 2-4 damage and skill damage modi
 | SkillJudgeConfig | Skill targeting config |
 | itemBase | Item definitions |
 
+### Config Encryption & Loading Pipeline
+
+**Source:** `data_structures.json` L408900, `server_api_i_L423034.js` L96-112
+
+**Unlike LoM, LoE does NOT use XOR tables.** The config "encryption" is trivial:
+
+#### Step 1: File Extension Obfuscation
+```javascript
+// ConfigManager._useEncode = true (always on in production)
+LoadZipCfg() {
+    this._useEncode && (
+        t.excelZipPath = t.excelZipPath.replace(".zip", ".dat"),
+        t.excelDiffZipPath = t.excelDiffZipPath.replace(".zip", ".dat"),
+        t.xmlZipPath = t.xmlZipPath.replace(".zip", ".dat")
+    );
+    this.loadExcel();
+    this.loadXml();
+}
+```
+Simply renames `.zip` → `.dat` to obscure the format. Files are still zip archives.
+
+#### Step 2: Subtraction Cipher (effectively no-op)
+```javascript
+decrypt = (t, e) => {
+    e += 0;  // coerces to number, key stays 0
+    const i = import_buffer.Buffer.from(t);
+    for (let s = 0; s < t.length; s++)
+        i[s] = (t[s] - e + 256) % 256;
+    return i
+}
+```
+With key=0, this is an identity function: `(byte - 0 + 256) % 256 = byte`.
+
+#### Step 3: Binary Header Parsing
+```javascript
+readBuf = t => ({
+    type: t.readUInt8(0),      // 1 byte: data type enum
+    len: t.readUint32BE(1),    // 4 bytes: big-endian length
+    data: t.subarray(5, 5+len),// payload
+    over: t.subarray(5+len)    // remaining buffer
+})
+```
+
+**Type Enum:**
+```javascript
+Types = { boolean: 0, object: 1, array: 2, number: 3,
+          bigint: 4, string: 5, null: 6, undefined: 7,
+          key: 8, value: 9 }
+```
+
+#### Full Pipeline
+```
+CDN (.dat file) → download → decrypt(buf, 0) [no-op] → unzip → parse JSON/XML → ConfigManager
+```
+
+**To extract config data:** Download `.dat` files from CDN, rename to `.zip`, unzip normally.
+
 ---
 
 ## Code Constants
@@ -495,6 +552,7 @@ SkillHelper.LevelDemolition = 1000
 SkillHelper.LevelUnit = 30
 MathUtil.speedS2C(t) = t / 100           // Server→Client speed conversion
 MathUtil.posC2S(x, y) = {floor(100*x), floor(-100*y)}  // Client→Server position
+_NumericType.Max = 1e4                    // 10000 = 100% in basis points
 ```
 
 ---
@@ -511,13 +569,22 @@ MathUtil.posC2S(x, y) = {floor(100*x), floor(-100*y)}  // Client→Server positi
 
 ---
 
-## Open Questions
+## Data Gaps
 
-- [ ] Values of `MIN_DMG_ATK_PCT`, `Hit_RATIO`, `BLOCK_RATIO` (defined elsewhere in bundle)
-- [ ] `CRIT2_MIN_PCT` value (likely 2.0)
+### Missing Raw Data (not yet captured)
+- [ ] **Config table .dat files** — skill coefficients, buff definitions, balance values (CDN download needed)
+- [ ] **HAR captures** — `har_captures/` is empty; need DevTools recording during game load
+- [ ] **Console dumps** — `console_dumps/` is empty; need runtime ConfigManager hooking
+
+### Unknown Constants (in bundle, not yet located)
+- [ ] `MIN_DMG_ATK_PCT` — minimum damage as fraction of ATK
+- [ ] `Hit_RATIO` — likely 0.001 from debug "(0.1%)"
+- [ ] `BLOCK_RATIO` — block chance scaling factor
+- [ ] `CRIT2_MIN_PCT` — Focus minimum multiplier (likely 2.0, same as CRIT_MIN_PCT)
+
+### Unresolved Mechanics
 - [ ] How `PvpDamDef` (1037) applies — separate multiplier step or folded into GDR?
 - [ ] What `AtkMst` (1018), `DefMst` (1019), `Pass` (1028) do
 - [ ] Full buff type definitions (Buff 11, 16, 25, etc.)
-- [ ] Skill coefficient tables per level (in CDN config, not embedded)
 - [ ] Movement/Speed formula for combat timing
 - [ ] Energy recovery base rate formula
